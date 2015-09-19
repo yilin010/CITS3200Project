@@ -12,22 +12,12 @@
     <title>Starter Template for Bootstrap</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
     <link href="css/additionalStyles.css" rel="stylesheet">
     <!-- Custom styles for this template -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
   <script type="text/javascript">
-
-
-    function addMarker() {
-        var table = document.getElementById('markerTable'),
-        tbody = table.getElementsByTagName('tbody')[0],
-        clone = tbody.rows[0].cloneNode(true);
-        if(table.rows.length == 13){
-            alert("Can only have up to 12 markers");
-            return;
-        }
-        var new_row = updateRow(clone.cloneNode(true), ++tbody.rows.length, true);
-        tbody.appendChild(new_row);
-}
 
 function updateRow(row, i, reset) {
     // row.cells[0].innerHTML = i;
@@ -42,14 +32,17 @@ function updateRow(row, i, reset) {
     }
     return row;
 }
-  function addMarkers(){
-       var x = document.getElementsByTagName('td');
-       var y = document.getElementById('markerTable');
-       var new_row = y.rows[1].cloneNode(true);
-       var len = y.rows.length;
-       new_row.cells[0].innerHTML = len;
-       y.appendChild( new_row );
-       // document.getElementById('markerTable').innerHTML +=document.getElementById('markerTable').rows[1].innerHTML;
+  function addMarker(){
+
+       var table = document.getElementById('markerTable'),
+       tbody = table.getElementsByTagName('tbody')[0],
+       clone = tbody.rows[0].cloneNode(true);
+       if(table.rows.length == 13){
+           alert("Can only have up to 12 markers");
+           return;
+       }
+       var new_row = updateRow(clone.cloneNode(true), ++tbody.rows.length, true);
+       tbody.appendChild(new_row)
   }
   function removeMarker(){
       var tableInfo = document.getElementById('markerTable').rows;
@@ -66,6 +59,39 @@ function updateRow(row, i, reset) {
           }
       }
 
+  }
+  function keyPressSearch(){
+      var studentName = document.getElementsByName('studentName')[0].value;
+      var dataString = 'name1='+studentName;
+    //   console.log(dataString);
+      $.ajax({
+            type: "POST",
+            url: "manualAdd.php",
+            data: dataString,
+            cache: false,
+            success: function(html)
+            {
+                if (html.length > 0){
+                    var data = html.split(',');
+                    console.log(data);
+                    var subTable = "<div class=\"col-md-10\">";
+                    subTable +="<table class = \"table table-bordered\"style=\"width:500px\">";
+                    subTable +="<thead><tr>";
+                    subTable +="<th class=\"tableHead\">Student Number</th>";
+                    subTable +="<th class=\"tableHead\" nowrap>Student Name</th>";
+                    subTable +="<th class=\"tableHead\" nowrap>Cohort</th>";
+                    subTable +="</tr></thead>";
+                    subTable +="<tbody><tr>";
+                    for(var i=0;i<data.length-1;i++){
+                        subTable += "<td class\"classRow\"><a href=\"#\">"+data[i]+"</a></td>";
+                    }
+                    subTable +="</tr></tbody></table></div>";
+                    document.getElementById("outputDiv").innerHTML = subTable;
+                }
+            }
+    });
+
+    return false;
   }
   </script>
 </head>
@@ -86,10 +112,10 @@ function updateRow(row, i, reset) {
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="profile.html">Home</a></li>
             <li><a href="#dataEntry">Enter Marks</a></li>
             <li><a href="#contact">Change Algorithm</a></li>
-            <li><a href="#addRemove">Add/Remove</a></li>
+            <li><a href="addRemove.html">Add/Remove</a></li>
             <li><a href="#export"> Export Data </a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -103,19 +129,22 @@ function updateRow(row, i, reset) {
             <!-- <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p> -->
           </div>
           <div class="row">
-              <div class="col-md-6">
-                  <form  action="" method="GET">
-                      <input type="text" name="studentNumber" placeholder="Enter A Student Number" style="width: 161px;margin-left: 15px;">
-                      <input type="button" value="Search for Student">
+              <div class="col-md-2">
+                  <form method="POST" action="manualAdd.php" id="studentSearch">
+                      <input class="stylish-input"type="text" name="studentName" onkeyup="keyPressSearch()" placeholder="Enter A Student Name" style="width: 161px;margin-left: 15px;">
+                      <!-- <input type="radio" name="proposalSeminar" value="proposal"> Proposal Seminar
+                      <input type="radio" name="finalSeminar" value="final"> Final Seminar -->
                  </form>
              </div>
             <div class="col-md-6">
-                <select id="selectCohort" style="margin-left: 270px;">
-                    <option value="Cohort 1">Cohort 1</option>
-                    <option value="Cohort 2">Cohort 2</option>
+                <select class="stylish-select" id="selectCohort"  form="studentSearch">
+                    <option value="anySeminar" selected>Any Seminar</option>
+                    <option value="proposalSeminar">Proposal Seminar</option>
+                    <option value="finalSeminar">Final Seminar</option>
                 </select>
             </div>
         </div>
+        <div id="outputDiv"></div>
         <div class="col-md-10">
             <table class = "table table-bordered" id="markerTable" style="margin-top: 30px">
                 <thead>
@@ -137,11 +166,14 @@ function updateRow(row, i, reset) {
 
         </div>
         <div class="row">
-            <div class="col-md-7" style="margin-left:15px;">
-                <input type="button" style="margin-top: 0.5cm;" name="addMarker" value="+ Add a Marker" onClick="addMarker()" >
+            <div class="col-md-3" style="margin-left:15px;">
+                <input type="button" class="btnExample" style="margin-top: 0.5cm;" name="addMarker" value="+ Add a Marker" onClick="addMarker()" >
             </div>
-            <div class="col-md-2"  style="margin-left:50px;">
-                <input type="button" style="margin-top: 0.5cm;" name="removeMarker" value="- Remove Selected Markers" onClick="removeMarker()">
+            <div class="col-md-3"  style="margin-left:15px;">
+                <input type="button" class="btnExample" style="margin-top: 0.5cm;" name="removeMarker" value="- Remove Selected Markers" onClick="removeMarker()" >
+            </div>
+            <div class="col-md-3" style="margin-left:15px;">
+                <input type="button" class="btnExample" style="margin-top: 0.5cm;" name="saveTable" value="Save" onClick="save()" >
             </div>
         </div>
     </div><!-- /.container -->
