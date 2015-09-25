@@ -44,6 +44,9 @@ function updateRow(row, i, reset) {
        var new_row = updateRow(clone.cloneNode(true), ++tbody.rows.length, true);
        tbody.appendChild(new_row)
   }
+  function generateMarkers(){
+
+  }
   function removeMarker(){
       var tableInfo = document.getElementById('markerTable').rows;
       if(tableInfo.length == 2){
@@ -82,9 +85,12 @@ function updateRow(row, i, reset) {
                     subTable +="<th class=\"tableHead\" nowrap>Cohort</th>";
                     subTable +="</tr></thead>";
                     subTable +="<tbody><tr>";
-                    for(var i=0;i<data.length-1;i++){
-                        subTable += "<td class\"classRow\"><a href=\"#\">"+data[i]+"</a></td>";
+                    for(var j=0;j<(data.length/3-1);j++){
+                        for(var i=0;i<3;i++){
+                            subTable += "<td class\"classRow\"><a href=\"generateMarkers()\">"+data[i]+"</a></td>";
+                        }
                     }
+
                     subTable +="</tr></tbody></table></div>";
                     document.getElementById("outputDiv").innerHTML = subTable;
                 }
