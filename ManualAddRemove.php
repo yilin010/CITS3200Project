@@ -2,7 +2,7 @@
     //Need to fill in appropriate details here
     $servername = "localhost:3307";
     $username = "root";
-    $password = "sonic7";
+    $password = "password";
     $dbname = "serverName";
 
     //First argument passed should be Marker or Student, denoting whether we are working with Markers or Students.
