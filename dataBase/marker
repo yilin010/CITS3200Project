@@ -1,5 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `prototype` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `prototype`;
+
 -- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: prototype
@@ -18,16 +17,17 @@ USE `prototype`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `markers`
+-- Table structure for table `marker`
 --
 
-DROP TABLE IF EXISTS `markers`;
+DROP TABLE IF EXISTS `marker`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `markers` (
-  `marker` varchar(45) NOT NULL,
-  PRIMARY KEY (`marker`),
-  UNIQUE KEY `marker_UNIQUE` (`marker`)
+CREATE TABLE `marker` (
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `current` bool NOT NULL,
+  PRIMARY KEY (`first_name`, 'lasxt_name')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -35,10 +35,9 @@ CREATE TABLE `markers` (
 -- Dumping data for table `markers`
 --
 
-LOCK TABLES `markers` WRITE;
-/*!40000 ALTER TABLE `markers` DISABLE KEYS */;
-INSERT INTO `markers` VALUES ('CuttingRe'),('GoingToLeaveA'),('Inden'),('NotAValid');
-/*!40000 ALTER TABLE `markers` ENABLE KEYS */;
+LOCK TABLES `marker` WRITE;
+/*!40000 ALTER TABLE `marker` DISABLE KEYS */;
+/*!40000 ALTER TABLE `marker` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

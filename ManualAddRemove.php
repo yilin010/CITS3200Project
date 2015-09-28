@@ -11,7 +11,6 @@
     //If working with Students, third argument should be Proposal or Final.
     //If working with Students, 4th, 5th, 6th and 7th arguments should be first_name, last_name, student_no and semester respectively.
 
-
     if($argv[1]=="Marker" || $argv[1]=="marker") {
         //Working with Markers
         if($argv[2]=="Add" || $argv[2]=="add") {
@@ -64,8 +63,8 @@
         echo "First argument incorrect, please specify Marker for Markers or Student for Students.\r\n";
         exit(1);
     }
-    
-    function addStudent($cohort, $fName, $lName, $sNum, $sem){  
+
+    function addStudent($cohort, $fName, $lName, $sNum, $sem){
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -80,7 +79,7 @@
         }
         $conn->close();
     }
-    function removeStudent($cohort, $fName, $lName, $sNum, $sem){  
+    function removeStudent($cohort, $fName, $lName, $sNum, $sem){
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -96,7 +95,7 @@
         $conn->close();
     }
 
-    function marker($fName, $lName, $curr){  
+    function marker($fName, $lName, $curr){
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -110,4 +109,4 @@
         }
         $conn->close();
     }
-?>  
+?>

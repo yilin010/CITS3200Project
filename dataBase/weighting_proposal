@@ -1,0 +1,27 @@
+
+--
+-- Table structure for table `weighting_proposal`
+--
+
+DROP TABLE IF EXISTS `weighting_proposal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `weighting_proposal` (
+  `year` int(11) NOT NULL,
+  `semester` int(11) NOT NULL,
+  `mark_1` decimal(10,10) NOT NULL,
+  `mark_2` decimal(10,10) DEFAULT NULL,
+  `mark_3` decimal(10,10) DEFAULT NULL,
+  `mark_4` decimal(10,10) DEFAULT NULL,
+  `mark_5` decimal(10,10) DEFAULT NULL,
+  `mark_6` decimal(10,10) DEFAULT NULL,
+  `mark_7` decimal(10,10) DEFAULT NULL,
+  `mark_8` decimal(10,10) DEFAULT NULL,
+  `mark_9` decimal(10,10) DEFAULT NULL,
+  `mark_10` decimal(10,10) DEFAULT NULL,
+  `OVERALL` decimal(10,10) NOT NULL
+  PRIMARY KEY (`year', 'semester')
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
