@@ -168,3 +168,8 @@ tr:hover{
 .navbar-box {
     border: 1px solid #151414;
 }
+
+.invalidNums {
+    background-color: #FFCCCC;
+    border: 2px solid #EC7272;
+}
