@@ -11,6 +11,8 @@
     //If working with Students, third argument should be Proposal or Final.
     //If working with Students, 4th, 5th, 6th and 7th arguments should be first_name, last_name, student_no and semester respectively.
 
+
+    //START YEAR/SEM LOOKUP.
     $semest = 1;
     $year = 2015;
 
@@ -31,6 +33,7 @@
     } else {
         echo "Could not get current year/semester from database, defaulting to semester 1 2015.";
     }
+    //END YEAR/SEM LOOKUP.
 
     if($_POST["table"]=="Marker" || $_POST["table"]=="marker") {
         //Working with Markers
