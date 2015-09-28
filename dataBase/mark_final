@@ -9,17 +9,17 @@ DROP TABLE IF EXISTS `mark_final`;
 CREATE TABLE `mark_final` (
   `student_no` int(11) NOT NULL,
   `marker` varchar(45) NOT NULL,
-  `mark_1` decimal(10,10) NOT NULL,
-  `mark_2` decimal(10,10) DEFAULT NULL,
-  `mark_3` decimal(10,10) DEFAULT NULL,
-  `mark_4` decimal(10,10) DEFAULT NULL,
-  `mark_5` decimal(10,10) DEFAULT NULL,
-  `mark_6` decimal(10,10) DEFAULT NULL,
-  `mark_7` decimal(10,10) DEFAULT NULL,
-  `mark_8` decimal(10,10) DEFAULT NULL,
-  `mark_9` decimal(10,10) DEFAULT NULL,
-  `mark_10` decimal(10,10) DEFAULT NULL,
-  `OVERALL` decimal(10,10) NOT NULL
+  `mark_1` float(10) NOT NULL,
+  `mark_2` float(10) DEFAULT NULL,
+  `mark_3` float(10) DEFAULT NULL,
+  `mark_4` float(10) DEFAULT NULL,
+  `mark_5` float(10) DEFAULT NULL,
+  `mark_6` float(10) DEFAULT NULL,
+  `mark_7` float(10) DEFAULT NULL,
+  `mark_8` float(10) DEFAULT NULL,
+  `mark_9` float(10) DEFAULT NULL,
+  `mark_10` float(10) DEFAULT NULL,
+  `OVERALL` float(10) NOT NULL
   PRIMARY KEY (`student_no', 'marker')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
