@@ -11,46 +11,48 @@
     //If working with Students, third argument should be Proposal or Final.
     //If working with Students, 4th, 5th, 6th and 7th arguments should be first_name, last_name, student_no and semester respectively.
 
-    if($argv[1]=="Marker" || $argv[1]=="marker") {
+    $semest = 1;
+
+    if($_POST["table"]=="Marker" || $_POST["table"]=="marker") {
         //Working with Markers
-        if($argv[2]=="Add" || $argv[2]=="add") {
+        if($_POST["task"]=="Add" || $_POST["task"]=="add") {
             echo "Adding to Markers.\r\n";
             //Add to Markers
-            echo "Adding ".$argv[3]." ".$argv[4]." to the marker table.\r\n";
-            marker($argv[3], $argv[4], TRUE);
-        } elseif($argv[2]=="Remove" || $argv[2]=="remove") {
+            echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." to the marker table.\r\n";
+            marker($_POST["fname"], $_POST["lname"], TRUE);
+        } elseif($_POST["task"]=="Remove" || $_POST["task"]=="remove") {
             echo "Removing from Markers.\r\n";
             //Remove from Markers
-            echo "removing ".$argv[3]." ".$argv[4]." to the marker table.\r\n";
-            marker($argv[3], $argv[4], FALSE);
+            echo "removing ".$_POST["fname"]." ".$_POST["lname"]." to the marker table.\r\n";
+            marker($_POST["fname"], $_POST["lname"], FALSE);
         } else {
             echo "Second argument incorrect, please specify Add for adding or Remove for removing.\r\n";
             exit(1);
         }
-    } elseif($argv[1]=="Student" || $argv[1]=="student") {
+    } elseif($_POST["table"]=="Student" || $_POST["table"]=="student") {
         //Working with Students
-        if($argv[2]=="Add" || $argv[2]=="add"){
+        if($_POST["task"]=="Add" || $_POST["task"]=="add"){
             echo "Adding to Students.\r\n";
             //Add to Students
-            if($argv[3]=="Proposal" || $argv[3] == "proposal") {
-                echo "Adding ".$argv[4]." ".$argv[5]." ".$argv[6]." for semester ".$argv[7]." to the student_proposal table.\r\n";
-                addStudent("proposal", $argv[4], $argv[5], $argv[6], $argv[7]);
-            } elseif($argv[3]=="Final" || $argv[3] == "final") {
-                echo "Adding ".$argv[4]." ".$argv[5]." ".$argv[6]." for semester ".$argv[7]." to the student_final table.\r\n";
-                addStudent("final", $argv[4], $argv[5], $argv[6], $argv[7]);
+            if($_POST["sem"]=="Proposal" || $_POST["sem"] == "proposal") {
+                echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." to the student_proposal table.\r\n";
+                addStudent("proposal", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
+            } elseif($_POST["sem"]=="Final" || $_POST["sem"] == "final") {
+                echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." to the student_final table.\r\n";
+                addStudent("final", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
             } else {
                 echo "Third argument incorrect, please specify Proposal or Final.\r\n";
                 exit(1);
             }
-        } elseif($argv[2]=="Remove" || $argv[2]=="remove") {
+        } elseif($_POST["task"]=="Remove" || $_POST["task"]=="remove") {
             echo "Removing from Students.\r\n";
             //Remove from Students
-            if($argv[3]=="Proposal" || $argv[3] == "proposal") {
-                echo "Removing ".$argv[4]." ".$argv[5]." ".$argv[6]." for semester ".$argv[7]." from the student_proposal table.\r\n";
-                removeStudent("proposal", $argv[4], $argv[5], $argv[6], $argv[7]);
-            } elseif($argv[3]=="Final" || $argv[3] == "final") {
-                echo "Removing ".$argv[4]." ".$argv[5]." ".$argv[6]." for semester ".$argv[7]." from the student_proposal table.\r\n";
-                removeStudent("final", $argv[4], $argv[5], $argv[6], $argv[7]);
+            if($_POST["sem"]=="Proposal" || $_POST["sem"] == "proposal") {
+                echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_proposal table.\r\n";
+                removeStudent("proposal", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
+            } elseif($_POST["sem"]=="Final" || $_POST["sem"] == "final") {
+                echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_proposal table.\r\n";
+                removeStudent("final", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
             } else {
                 echo "Third argument incorrect, please specify Proposal or Final.\r\n";
                 exit(1);
@@ -63,8 +65,8 @@
         echo "First argument incorrect, please specify Marker for Markers or Student for Students.\r\n";
         exit(1);
     }
-
-    function addStudent($cohort, $fName, $lName, $sNum, $sem){
+    
+    function addStudent($cohort, $fName, $lName, $sNum, $sem){  
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -79,7 +81,7 @@
         }
         $conn->close();
     }
-    function removeStudent($cohort, $fName, $lName, $sNum, $sem){
+    function removeStudent($cohort, $fName, $lName, $sNum, $sem){  
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -95,7 +97,7 @@
         $conn->close();
     }
 
-    function marker($fName, $lName, $curr){
+    function marker($fName, $lName, $curr){  
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -109,4 +111,4 @@
         }
         $conn->close();
     }
-?>
+?>  
