@@ -2,7 +2,7 @@
     //Need to fill in appropriate details here
     $servername = "localhost:3307";
     $username = "root";
-    $password = "sonic7";
+    $password = "password";
     $dbname = "serverName";
 
     //First argument passed should be Marker or Student, denoting whether we are working with Markers or Students.
@@ -11,7 +11,29 @@
     //If working with Students, third argument should be Proposal or Final.
     //If working with Students, 4th, 5th, 6th and 7th arguments should be first_name, last_name, student_no and semester respectively.
 
+
+    //START YEAR/SEM LOOKUP.
     $semest = 1;
+    $year = 2015;
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        echo "Connection failed: " . $conn->connect_error . "\r\n";
+        exit(1);
+    }
+    
+    $sqlsem = "SELECT year, semester FROM current_year_semester";
+    $result = mysqli_query($conn, $sqlsem);
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $year = $row["year"];
+            $semest = $row["semester"];
+        }
+    } else {
+        echo "Could not get current year/semester from database, defaulting to semester 1 2015.";
+    }
+    //END YEAR/SEM LOOKUP.
 
     if($_POST["table"]=="Marker" || $_POST["table"]=="marker") {
         //Working with Markers
@@ -72,8 +94,7 @@
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
-        $y=date("Y");
-        $sql = "INSERT INTO student_" .$cohort ." (student_no, first_Name, last_Name, year, semester) VALUES ('$sNum', '$fName', '$lName', '$y', '$sem')";
+        $sql = "INSERT INTO student_" .$cohort ." (student_no, first_Name, last_Name, year, semester, title) VALUES ('$sNum', '$fName', '$lName', '$year', '$sem', '$_POST["title"]')";
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully\r\n";
         } else {
@@ -87,8 +108,7 @@
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
-        $y=date("Y");
-        $sql = "DELETE FROM student_" .$cohort ." WHERE student_no=='$sNum' AND  first_name=='$fName' AND last_name=='$lName' AND year=='$y' AND semester=='$sem')";
+        $sql = "DELETE FROM student_" .$cohort ." WHERE student_no=='$sNum' AND  first_name=='$fName' AND last_name=='$lName' AND year=='$year' AND semester=='$sem')";
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully\r\n";
         } else {
@@ -111,4 +131,8 @@
         }
         $conn->close();
     }
+<<<<<<< HEAD
 ?>
+=======
+?>  
+>>>>>>> e493e0d5f3c29bd1fd54184ae0193a49627ec962
