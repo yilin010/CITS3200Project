@@ -51,7 +51,7 @@
                 echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_proposal table.\r\n";
                 removeStudent("proposal", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
             } elseif($_POST["sem"]=="Final" || $_POST["sem"] == "final") {
-                echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_proposal table.\r\n";
+                echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_final table.\r\n";
                 removeStudent("final", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
             } else {
                 echo "Third argument incorrect, please specify Proposal or Final.\r\n";
@@ -65,8 +65,8 @@
         echo "First argument incorrect, please specify Marker for Markers or Student for Students.\r\n";
         exit(1);
     }
-    
-    function addStudent($cohort, $fName, $lName, $sNum, $sem){  
+
+    function addStudent($cohort, $fName, $lName, $sNum, $sem){
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -81,7 +81,7 @@
         }
         $conn->close();
     }
-    function removeStudent($cohort, $fName, $lName, $sNum, $sem){  
+    function removeStudent($cohort, $fName, $lName, $sNum, $sem){
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -97,7 +97,7 @@
         $conn->close();
     }
 
-    function marker($fName, $lName, $curr){  
+    function marker($fName, $lName, $curr){
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -111,4 +111,4 @@
         }
         $conn->close();
     }
-?>  
+?>

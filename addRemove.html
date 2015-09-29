@@ -41,11 +41,12 @@
             console.log(studentName);
             var studentNumber = document.forms[1].elements["manualStudentNumber"].value;
             var checkedSeminar = document.forms[1].elements["seminar"].value;
+            var stitle = document.getElementById('stitle').value
             // var dataString = '&name='+studentName+'&num='+studentNumber+'&sem='+checkedSeminar;
             $.ajax({
                 type:"POST",
                 url: "ManualAddRemove.php",
-                data: {table:"student",task:"add",sem:checkedSeminar,fname:studentName[0],lname:studentName[1],num:studentNumber,title:"Mr"},
+                data: {table:"student",task:"add",sem:checkedSeminar,fname:studentName[0],lname:studentName[1],num:studentNumber,title:stitle},
                 cache: false,
                 success: function(html){
                     alert(html)
@@ -55,12 +56,41 @@
 
         }
         function addMarker(){
-            var markerName = document.forms[1].elements["manualMarkerName"].value;
+            var markerName = document.forms[1].elements["manualMarkerName"].value.split(" ");
             var markerNumber = document.forms[1].elements["manualMarkerNumber"].value;
             $.ajax({
                 type:"POST",
                 url: "",
-                data: {name:markerName,num:markerNumber,table:"marker"},
+                data: {table:"marker",task:"add",fname:markerName[0],lname:makrkerName[1]},
+                cache: false,
+                success: function(html){
+                    alert('Successfully added '+markerName+' with marker number: '+markerNumber);
+                }
+            })
+
+        }
+        function removeStudent(){
+            var studentName = document.forms[2].elements["manualStudentName"].value.split(" ");
+            var studentNumber = document.forms[2].elements["manualStudentNumber"].value;
+            var checkedSeminar = document.forms[2].elements["seminar"].value;
+            $.ajax({
+                type:"POST",
+                url: "ManualAddRemove.php",
+                data: {table:"student",task:"remove",sem:checkedSeminar,fname:studentName[0],lname:studentName[1],num:studentNumber,title:"Mr"},
+                cache: false,
+                success: function(html){
+                    alert(html)
+                    // alert('Successfully added '+studentName+' with student number: '+studentNumber+' to '+checkedSeminar+' cohort');
+                }
+            })
+        }
+        function removeMarker(){
+            var markerName = document.forms[2].elements["manualMarkerName"].value.split(" ");
+            var markerNumber = document.forms[2].elements["manualMarkerNumber"].value;
+            $.ajax({
+                type:"POST",
+                url: "",
+                data: {table:"marker",task:"add",fname:markerName[0],lname:markerName[1]},
                 cache: false,
                 success: function(html){
                     alert('Successfully added '+markerName+' with marker number: '+markerNumber);
@@ -76,17 +106,17 @@
             // excelInput.setAttribute("accept",".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain");
             // document.getElementById('insert').appendChild(excelInput);
             document.getElementById('insert').innerHTML="<h4 style=\"text-align:left\"><u>Add Using File</u></h4><form action=\"\"><input type=\"file\" id=\"\"style=\"padding-top: 5px;\"name=\"addExcel\" accept=\".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain\"><input type=\"submit\" value=\"fileAdd\" id=\"uploadFile\"</form>";
-            document.getElementById('manualAdd').innerHTML="<h4 style=\"text-align:center;display:block\"><u>Add Manually</u></h4><form onsubmit=\"addStudent()\" id=\"manualForm\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\"><br><br> Number: <input type=\"text\" onkeyup=\"validateNum()\" name=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input type=\"radio\" name=\"seminar\" id=\"proposal\" value=\"proposalSeminar\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"finalSeminar\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Add\"></form>";
-            document.getElementById('manualRemove').innerHTML=" <h4 style=\"text-align:center\"><u>Remove Manually</u></h4><form onsubmit=\"ManualAddRemove.php\" method=\"get\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\" ><br><br> Number: <input method=\"post\" type=\"text\" name=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Remove\"></form>";
+            document.getElementById('manualAdd').innerHTML="<h4 style=\"text-align:center;display:block\"><u>Add Manually</u></h4><select id=\"stitle\"><option value=\"Mr\">Mr</option><option value=\"Ms\">Ms</option><option value=\"Miss\">Miss</option><option value=\"Mrs\">Mrs</option></select><form onsubmit=\"addStudent()\" id=\"manualAdd\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\"><br><br> <label id=\"numberLabel\" for=\"manualStudentNumber\">Number:</label> <input type=\"text\" onkeyup=\"validateNum()\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input type=\"radio\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Add\"></form>";
+            document.getElementById('manualRemove').innerHTML=" <h4 style=\"text-align:center\"><u>Remove Manually</u></h4><form onsubmit=\"removeStudent()\" id=\"manualRemove\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\" ><br><br><label id=\"numberLabel\" for=\"manualStudentNumber\"> Number:</label> <input method=\"post\" type=\"text\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input type=\"radio\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Remove\"></form>";
         }
         function spawnMarker(){
             spawnStudent();
             var num = document.getElementsByName('manualStudentName').length;
             for(var i=num-1;i>-1;i--){
                 document.getElementsByName('manualStudentName')[i].setAttribute("placeholder","Enter Marker Name");
-                document.getElementsByName('manualStudentNumber')[i].setAttribute("placeholder","Enter Marker Number");
+                // document.getElementsByName('manualStudentNumber')[i].setAttribute("placeholder","Enter Marker Number");
                 document.getElementsByName('manualStudentName')[i].setAttribute("name","manualMarkerName");
-                document.getElementsByName('manualStudentNumber')[i].setAttribute("name","manualMarkerNumber");
+                // document.getElementsByName('manualStudentNumber')[i].setAttribute("name","manualMarkerNumber");
             }
             var labels = document.getElementsByTagName('label');
             for(var i = 0;i<labels.length;i++){
@@ -94,7 +124,12 @@
             }
             document.forms[1].elements['final'].parentNode.removeChild(document.forms[1].elements['final']);
             document.forms[1].elements['proposal'].parentNode.removeChild(document.forms[1].elements['proposal']);
-            document.getElementById('manualForm').setAttribute("onsubmit","addMarker()");
+            document.forms[2].elements['final'].parentNode.removeChild(document.forms[2].elements['final']);
+            document.forms[2].elements['proposal'].parentNode.removeChild(document.forms[2].elements['proposal']);
+            document.getElementById('manualStudentNumber').parentNode.removeChild(document.getElementById('manualStudentNumber'));
+            document.getElementById('manualStudentNumber').parentNode.removeChild(document.getElementById('manualStudentNumber'));
+            document.getElementById('manualAdd').setAttribute("onsubmit","addMarker()");
+            document.getElementById('manualRemove').setAttribute("onsubmit","removeMarker()");
         }
         function manualAdd(){
             alert("MANUAL INSERT");
