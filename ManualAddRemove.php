@@ -31,7 +31,7 @@
             $semest = $row["semester"];
         }
     } else {
-        echo "Could not get current year/semester from database, defaulting to semester 1 2015.";
+        echo "Could not get current year/semester from database, defaulting to semester 1 2015.\r\n";
     }
     //END YEAR/SEM LOOKUP.
 
