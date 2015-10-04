@@ -108,7 +108,7 @@
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
-        $sql = "DELETE FROM student_" .$cohort ." WHERE student_no=='$sNum' AND  first_name=='$fName' AND last_name=='$lName' AND year=='$year' AND semester=='$sem')";
+        $sql = "DELETE FROM student_" .$cohort ." WHERE student_no=='$sNum' AND  first_name=='$fName' AND last_name=='$lName' AND year=='$year' AND semester=='$sem'";
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully\r\n";
         } else {
