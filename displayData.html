@@ -82,14 +82,17 @@ $(function(){
 
     <div class="container starter-template">
         <div class="jumbotron text-center ">
-              <h1><span class="fa fa-lock"></span> Descriptive Statistics </h1>
+              <h1><span class="fa fa-lock"></span> Display Data </h1>
 
-              <a href="#page1" class="btn btn-default"><span class="fa fa-user"></span>Student Stats</a>
-              <a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Markers Stats</a>
+              <a href="#page1" class="btn btn-default"><span class="fa fa-user"></span>Students</a>
+              <a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Markers</a>
 </div>
 
 <div id="page1" class="content">
             <h2> Students' Statistics </h2>
+            <div class="col-md-6">
+
+<input type="text" id="markersSearch" placeholder="Enter Student's Name">
 
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
                     <option value="anySeminar" selected>Any Seminar</option>
@@ -102,45 +105,93 @@ $(function(){
                     <option value="proposalSeminar">2015</option>
                     <option value="finalSeminar">2016</option>
                 </select>
-              <a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Export to Excel</a>
-
-<br />
-            <table class = "table table-bordered" id="studentStats" style="margin-top: 30px">
+            </div>
+<br/>
+<br/>
+            <table class = "table table-bordered" id="studentsData" style="margin-top: 30px">
                 <thead>
                     <tr>
-                        <th style="text-align: center;vertical-align: middle">Student No.</th>
-                        <th style="text-align: center">Student Name</th>
-                       <th style="text-align: center">No. of markers marked</th>
-
+                        <th style="text-align: center;vertical-align: middle">Markers Name</th>
                         <th style="text-align: center">Final Mark</th>
-                        <th style="text-align: center">Marks Range</th>
-
-                        <th style="text-align: center">Max</th>
-
-                        <th style="text-align: center">Min</th>
-
-                        <th style="text-align: center">Std Dev</th>
+                        <th style="text-align: center">Oral Marks</th>
+                        <th style="text-align: center">Slide Marks</th>
+                        <th style="text-align: center">Content Marks</th>
+                        <th style="text-align: center">Other Marks</th>
                     </tr>
                 </thead>
-                <td ></td>
-                                <td ></td>
+                                  <tr>
+        <td>Markers 1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
 
-                <td ></td>
+                <td></td>
+
+    </tr>
+                                      <tr>
+        <td>Markers 2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+    </tr>
+                    <tr>
+        <td>Final Average</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+    </tr>
 
 
-                <td ></td>
+                        <tr>
+        <td>Maximum</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
 
-                <td ></td>
+                <td></td>
 
-                <td ></td>
-                                <td ></td>
+    </tr>
+
+                            <tr>
+        <td>Minimum</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+    </tr>
 
 
+                            <tr>
+        <td>Std Dev</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+
+    </tr>
             </table>
 </div>
 
 <div id="page2" class="content">
             <h2> Markers' Statistics </h2>
+            <div class="col-md-6">
+
+<input type="text" id="markersSearch" placeholder="Enter Marker's Name">
 
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
                     <option value="anySeminar" selected>Any Seminar</option>
@@ -153,23 +204,93 @@ $(function(){
                     <option value="proposalSeminar">2015</option>
                     <option value="finalSeminar">2016</option>
                 </select>
-                                          <a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Export to Excel</a>
-
-            <br />
-            <table class = "table table-bordered" id="markersStats" style="margin-top: 30px">
+            </div>
+<br/>
+<br/>
+            <table class = "table table-bordered" id="markersData" style="margin-top: 30px">
                 <thead>
                     <tr>
-                        <th style="text-align: center;vertical-align: middle">Marker Name</th>
-                        <th style="text-align: center">No. of students Marked</th>
-                        <th style="text-align: center">Average Mark</th>
-                                                <th style="text-align: center">Marks Range</th>
+                        <th style="text-align: center;vertical-align: middle">Students Name</th>
+                        <th style="text-align: center;vertical-align: middle">Students Number</th>
 
-                                                <th style="text-align: center">Max</th>
-
-                        <th style="text-align: center">Min</th>
-                        <th style="text-align: center">Std Dev</th>
+                        <th style="text-align: center">Final Mark</th>
+                        <th style="text-align: center">Oral Marks</th>
+                        <th style="text-align: center">Slide Marks</th>
+                        <th style="text-align: center">Content Marks</th>
+                        <th style="text-align: center">Other Marks</th>
                     </tr>
                 </thead>
+                                  <tr>
+        <td>Student 1</td>
+                <td>12345678</td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+                                <td></td>
+
+
+    </tr>
+                                      <tr>
+        <td>Student 2</td>
+                <td>12345678</td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>                <td></td>
+
+
+    </tr>
+
+                    <tr>
+        <td colspan="2">Maximum</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+                <td></td>
+
+    </tr>
+
+                        <tr>
+        <td colspan="2">Minimum</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+                <td></td>
+
+    </tr>
+
+
+                                        <tr>
+        <td colspan="2">Range (Max-Min)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+                <td></td>
+
+    </tr>
+                                <tr>
+        <td colspan="2">Std Dev</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td></td>
+                <td></td>
+
+    </tr>
             </table>
 </div>
 
