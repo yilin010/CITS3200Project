@@ -15,7 +15,7 @@
     }
     
     $sqlsem = "SELECT year, semester FROM current_year_semester";
-    $result = mysqli_query($conn, $sqlsem);
+    $result = $conn->query ($sqlsem);
     if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
             $year = $row["year"];
