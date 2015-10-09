@@ -54,9 +54,9 @@ function calculateSum() {
     //.toFixed() method will roundoff the final sum to 2 decimal places
 }
 
-
-
 })
+
+
 
 function updateRow(row, i, reset) {
     // row.cells[0].innerHTML = i;
@@ -76,7 +76,7 @@ function updateRow(row, i, reset) {
        var table = document.getElementById('weightTable'),
        tbody = table.getElementsByTagName('tbody')[0],
        clone = tbody.rows[0].cloneNode(true);
-       if(table.rows.length == 13){
+       if(table.rows.length == 12){
            alert("Can only have up to 10 Assessment");
            return;
        }
@@ -84,6 +84,7 @@ function updateRow(row, i, reset) {
     $('#weightTable tr:last').before(new_row);
 
   }
+
 
   function removeAssessment(){
       var tableInfo = document.getElementById('weightTable').rows;
@@ -104,6 +105,95 @@ function updateRow(row, i, reset) {
       }
 
   }
+
+  function save(){
+  	var tableInfo = document.getElementById('weightTable').rows;
+  	var assessmentArray = [];
+  	var weightageArray =[];
+  	var x = document.getElementsByClassName("txt");
+  	var y = document.getElementsByClassName("assessName");
+  	var saveSum = parseFloat(document.getElementById('sum').innerText).toFixed(2);
+  	
+  	if (saveSum !== parseFloat(100).toFixed(2)){
+
+  		alert("Unable to save assessment. Weightage not 100%");
+  		return;
+  	}
+
+
+  	for(var j=0;j<10;j++){
+
+  		weightageArray[j] = 0;
+
+  	}
+
+  	for(var i=0;i<tableInfo.length-2;i++){
+
+
+	         if(x.length > 0 && tableInfo[i+1].cells[2].children[0].value >0){ //check if has a value
+
+
+	         	weightageArray[i] = tableInfo[i+1].cells[2].children[0].value;
+	         } else {
+
+	         }
+
+	        }
+
+	        for(var j=0;j<10;j++){
+
+	        	assessmentArray[j] = "null";
+
+	        }
+
+	        for(var i=0;i<tableInfo.length-2;i++){
+
+	        if(y.length > 0 && tableInfo[i+1].cells[2].children[0].value >0){ //check if has a value
+
+	        	assessmentArray[i] = tableInfo[i+1].cells[1].children[0].value;
+
+	        }else {
+
+	        }
+
+	       }
+
+
+	       var mark1 = weightageArray[0];
+	       var mark2 = weightageArray[1];
+	       var mark3 = weightageArray[2];
+	       var mark4 = weightageArray[3];
+	       var mark5 = weightageArray[4];
+	       var mark6 = weightageArray[5];
+	       var mark7 = weightageArray[6];
+	       var mark8 = weightageArray[7];
+	       var mark9 = weightageArray[8];
+	       var mark10 = weightageArray[9];
+
+
+	       var name1 = assessmentArray[0];
+	       var name2 = assessmentArray[1];
+	       var name3 = assessmentArray[2];
+	       var name4 = assessmentArray[3];
+	       var name5 = assessmentArray[4];
+	       var name6 = assessmentArray[5];
+	       var name7 = assessmentArray[6];
+	       var name8 = assessmentArray[7];
+	       var name9 = assessmentArray[8];
+	       var name10 = assessmentArray[9];
+
+									//if name is empty, null, if weight is empty 0
+									$.ajax({
+										type:"POST",
+										url: "ManualAddRemove.php",
+										data: {mark1:weightageArray[0], mark2:weightageArray[1], mark3:weightageArray[2], mark4:weightageArray[3], mark5:weightageArray[4], mark6:weightageArray[5], mark7:weightageArray[6], mark8:weightageArray[7], mark9:weightageArray[8], mark10:weightageArray[9], mark1name:assessmentArray[0], mark2name:assessmentArray[1],  mark3name:assessmentArray[2],  mark4name:assessmentArray[3],  mark5name:assessmentArray[4],  mark6name:assessmentArray[5], mark7name:assessmentArray[6], mark8name:assessmentArray[7],mark9name:assessmentArray[8], mark10name:assessmentArray[9]},
+										cache: false,
+										success: function(html){
+											alert('Successfully changed assessments weightage');
+										}
+									})
+
+								}
 
 
         </script>
@@ -170,7 +260,7 @@ Select cohort to change assessment components
 
             <tr>
                                 <td style="text-align: center;vertical-align: middle;width: 78px"><input type="checkbox" name="selected"></td>
-                                                <td style="width: 78px"><input type="text" style="border: 0px solid;text-align: center" name="marker" placeholder="Enter Assessment Name"></td>
+                                                <td style="width: 78px"><input type="text" class="assessName" style="border: 0px solid;text-align: center" name="marker" placeholder="Enter Assessment Name"></td>
                 <td style="width: 78px"><input type="text" style="border: 0px solid;text-align: center" class="txt" name="weightage22" placeholder="Enter Weightage in %"></td>
 
             </tr>
