@@ -94,7 +94,8 @@
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
-        $sql = "INSERT INTO student_" .$cohort ." (student_no, first_Name, last_Name, year, semester, title) VALUES ('$sNum', '$fName', '$lName', '$year', '$sem', '$_POST["title"]')";
+        $title = $_POST["title"];
+        $sql = "INSERT INTO student_" .$cohort ." (student_no, first_Name, last_Name, year, semester, title) VALUES ('$sNum', '$fName', '$lName', '$year', '$sem', '$title')";
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully\r\n";
         } else {
