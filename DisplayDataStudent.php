@@ -130,6 +130,7 @@
     //Create an arrays of minimum and maximum marks for each section.
     $mins = array("MINIMUM",100,100,100,100,100,100,100,100,100,100,100);
     $maxs = array("MAXIMUM",0,0,0,0,0,0,0,0,0,0,0);
+    $avgs = array("AVERAGE",0,0,0,0,0,0,0,0,0,0,0);
     for($a=1;$a<$nrows;$a++){
         for($b=1;$b<$nmarks+2;$b++){
             if($table[$a][$b]<$mins[$b]){
@@ -138,10 +139,12 @@
             if($table[$a][$b]>$maxs[$b]){
                 $maxs[$b] = $table[$a][$b];
             }
+            $avgs[$b]+=$table[$a][$b];
         }
     }
     $mins = array_slice($mins, 0, $nmarks+2);
     $maxs = array_slice($maxs, 0, $nmarks+2);
+    $avgs = array_slice($avgs, 0, $nmarks+2);
     $table[] = $mins;
     $table[] = $maxs;
     //echo "Minimums: ";
@@ -158,6 +161,7 @@
         $rans[] = $maxs[$c]-$mins[$c];
     }
     $table[] = $rans;
+    $table[] = $avgs;
 
     //We now have a table that includes all of the headings and data to display on the page, simply output.
 
