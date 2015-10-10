@@ -44,7 +44,7 @@ function calculateSum() {
 
         if (sum > 100){
 
- alert("Assessment cannot be more than 100%");
+ alert("Assessment weightings cannot sum to more than 100%");
      $("#sum").html('Error');
 
            return;
@@ -77,7 +77,7 @@ function updateRow(row, i, reset) {
        tbody = table.getElementsByTagName('tbody')[0],
        clone = tbody.rows[0].cloneNode(true);
        if(table.rows.length == 12){
-           alert("Can only have up to 10 Assessment");
+           alert("Can only have up to 10 Assessments");
            return;
        }
        var new_row = updateRow(clone.cloneNode(true), ++tbody.rows.length, true);
@@ -96,7 +96,7 @@ function updateRow(row, i, reset) {
           if(tableInfo[i].getElementsByTagName('td')[0].getElementsByTagName('input')[0].checked == true){
 
                   if(tableInfo.length == 3){
-          alert("Must have at least one marker");
+          alert("Must have at least one assessment.");
           return;
       }
               console.log("row "+i +" is going to be deleted");
@@ -116,7 +116,7 @@ function updateRow(row, i, reset) {
   	
   	if (saveSum !== parseFloat(100).toFixed(2)){
 
-  		alert("Unable to save assessment. Weightage not 100%");
+  		alert("Unable to save assessment. Total weightings not 100%");
   		return;
   	}
 
@@ -185,7 +185,7 @@ function updateRow(row, i, reset) {
 									//if name is empty, null, if weight is empty 0
 									$.ajax({
 										type:"POST",
-										url: "ManualAddRemove.php",
+										url: "modifyAlgorithm.php",
 										data: {mark1:weightageArray[0], mark2:weightageArray[1], mark3:weightageArray[2], mark4:weightageArray[3], mark5:weightageArray[4], mark6:weightageArray[5], mark7:weightageArray[6], mark8:weightageArray[7], mark9:weightageArray[8], mark10:weightageArray[9], mark1name:assessmentArray[0], mark2name:assessmentArray[1],  mark3name:assessmentArray[2],  mark4name:assessmentArray[3],  mark5name:assessmentArray[4],  mark6name:assessmentArray[5], mark7name:assessmentArray[6], mark8name:assessmentArray[7],mark9name:assessmentArray[8], mark10name:assessmentArray[9]},
 										cache: false,
 										success: function(html){
