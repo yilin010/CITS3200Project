@@ -37,7 +37,7 @@
         }
         function validateNum(){
             var studentNumber = document.forms[1].elements["manualStudentNumber"].value;
-            console.log(studentNumber.length);
+            //console.log(studentNumber.length);
             if( (studentNumber.length > 0 && studentNumber.length<8) || isNaN(studentNumber))
                 document.forms[1].elements["manualStudentNumber"].className = 'invalidNums';
             else document.forms[1].elements["manualStudentNumber"].className = '';
@@ -55,22 +55,24 @@
                 data: {table:"student",task:"add",sem:checkedSeminar,fname:studentName[0],lname:studentName[studentName.length-1],num:studentNumber,title:stitle},
                 cache: false,
                 success: function(html){
-                    alert(html)
-                    // alert('Successfully added '+studentName+' with student number: '+studentNumber+' to '+checkedSeminar+' cohort');
+                    //alert(html)
+                    //console.log(html);
+                    alert('Successfully added '+studentName+' with student number: '+studentNumber+' to '+checkedSeminar+' cohort');
                 }
             })
 
         }
         function addMarker(){
             var markerName = document.forms[1].elements["manualMarkerName"].value.split(" ");
-            var markerNumber = document.forms[1].elements["manualMarkerNumber"].value;
+            //var markerNumber = document.forms[1].elements["manualMarkerNumber"].value;
             $.ajax({
                 type:"POST",
-                url: "",
-                data: {table:"marker",task:"add",fname:markerName[0],lname:makrkerName[1]},
+                url: "ManualAddRemove.php",
+                data: {table:"marker",task:"add",fname:markerName[0],lname:markerName[1]},
                 cache: false,
                 success: function(html){
-                    alert('Successfully added '+markerName+' with marker number: '+markerNumber);
+                    //console.log(html);
+                    alert('Successfully added '+markerName);
                 }
             })
 
@@ -92,14 +94,15 @@
         }
         function removeMarker(){
             var markerName = document.forms[2].elements["manualMarkerName"].value.split(" ");
-            var markerNumber = document.forms[2].elements["manualMarkerNumber"].value;
+            //var markerNumber = document.forms[2].elements["manualMarkerNumber"].value;
             $.ajax({
                 type:"POST",
-                url: "",
+                url: "ManualAddRemove.php",
                 data: {table:"marker",task:"add",fname:markerName[0],lname:markerName[1]},
                 cache: false,
                 success: function(html){
-                    alert('Successfully added '+markerName+' with marker number: '+markerNumber);
+                    //console.log(html);
+                    alert('Successfully removed '+markerName);
                 }
             })
 
@@ -112,8 +115,8 @@
             // excelInput.setAttribute("accept",".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain");
             // document.getElementById('insert').appendChild(excelInput);
             document.getElementById('insert').innerHTML="<h4 style=\"text-align:left\"><u>Add Using File</u></h4><form action=\"\"><input type=\"file\" id=\"\"style=\"padding-top: 5px;\"name=\"addExcel\" accept=\".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain\"><input type=\"submit\" value=\"fileAdd\" id=\"uploadFile\"</form>";
-            document.getElementById('manualAdd').innerHTML="<h4 style=\"text-align:center;display:block\"><u>Add Manually</u></h4><form onsubmit=\"addStudent()\" id=\"manualAdd\"> Name: <select class=\"stylish-select\" style=\"margin-right:5px\" id=\"stitle\"><option value=\"Mr\">Mr</option><option value=\"Ms\">Ms</option><option value=\"Miss\">Miss</option><option value=\"Mrs\">Mrs</option></select><input class=\"stylish-input\" type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\"><br><br> <label id=\"numberLabel\" for=\"manualStudentNumber\">Number:</label> <input type=\"text\" onkeyup=\"validateNum()\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input style=\"margin-right:5px\"type=\"radio\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Add\"></form>";
-            document.getElementById('manualRemove').innerHTML=" <h4 style=\"text-align:center\"><u>Remove Manually</u></h4><form onsubmit=\"removeStudent()\" id=\"manualRemove\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\" ><br><br><label id=\"numberLabel\" for=\"manualStudentNumber\"> Number:</label> <input method=\"post\" type=\"text\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input type=\"radio\" style=\"margin-right:5px\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Remove\"></form>";
+            document.getElementById('manualAdd').innerHTML="<h4 style=\"text-align:center;display:block\"><u>Add Manually</u></h4><form method=\"POST\" onsubmit=\"addStudent();return false;\" id=\"manualAdd\"> Name: <select class=\"stylish-select\" style=\"margin-right:5px\" id=\"stitle\"><option value=\"Mr\">Mr</option><option value=\"Ms\">Ms</option><option value=\"Miss\">Miss</option><option value=\"Mrs\">Mrs</option></select><input class=\"stylish-input\" type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\"><br><br> <label id=\"numberLabel\" for=\"manualStudentNumber\">Number:</label> <input type=\"text\" onkeyup=\"validateNum()\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input style=\"margin-right:5px\"type=\"radio\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\"></form>";
+            document.getElementById('manualRemove').innerHTML=" <h4 style=\"text-align:center\"><u>Remove Manually</u></h4><form method=\"POST\" onsubmit=\"removeStudent();return false;\" id=\"manualRemove\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\" ><br><br><label id=\"numberLabel\" for=\"manualStudentNumber\"> Number:</label> <input method=\"post\" type=\"text\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input type=\"radio\" style=\"margin-right:5px\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Remove\"></form>";
         }
         function spawnMarker(){
             spawnStudent();
@@ -134,33 +137,9 @@
             document.forms[2].elements['proposal'].parentNode.removeChild(document.forms[2].elements['proposal']);
             document.getElementById('manualStudentNumber').parentNode.removeChild(document.getElementById('manualStudentNumber'));
             document.getElementById('manualStudentNumber').parentNode.removeChild(document.getElementById('manualStudentNumber'));
-            document.getElementById('manualAdd').setAttribute("onsubmit","addMarker()");
-            document.getElementById('manualRemove').setAttribute("onsubmit","removeMarker()");
+            document.forms[1].setAttribute("onsubmit","addMarker(); return false;");
+            document.forms[2].setAttribute("onsubmit","removeMarker(); return false;");
         }
-		function rollover(){
-			
-            $.ajax({
-                type:"POST",
-                url: "NewRoll.php",
-                cache: false,
-                success: function(html){
-                    alert(html)
-                }
-            })
-		}
-	
-	function addFile(){
-			
-            $.ajax({
-                type:"POST",
-                url: "addFile.php",
-                cache: false,
-                success: function(html){
-                    alert(html)
-                }
-            })
-	}
-		
         function manualAdd(){
             alert("MANUAL INSERT");
         }
@@ -211,7 +190,7 @@
                     <p class="modalP">Rolling a cohort from a proposal seminar into a final seminar will prevent you from making changes to the proposal seminar</p>
                     <br>
                     <p class="modalP">Make sure you have saved all changes for the current proposal seminar</p>
-                    <input class="btn btn-confirm" type="button" onclick="rollover()" value="Continue with rollover">
+                    <input class="btn btn-confirm" type="button" onclick="" value="Continue with rollover">
                     <a href="#close" class="btn btn-cancel"><span class="fa fa-user"></span>Cancel</a>
                 </div>
             </div>

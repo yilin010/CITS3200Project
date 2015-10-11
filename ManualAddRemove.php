@@ -2,8 +2,8 @@
     //Need to fill in appropriate details here
     $servername = "localhost:3307";
     $username = "root";
-    $password = "password";
-    $dbname = "serverName";
+    $password = "sonic7";
+    $dbname = "marks";
 
     //First argument passed should be Marker or Student, denoting whether we are working with Markers or Students.
     //Second argument passed should be Add or Remove, denoting whether we are adding or removing from the database.
@@ -11,7 +11,7 @@
     //If working with Students, third argument should be Proposal or Final.
     //If working with Students, 4th, 5th, 6th and 7th arguments should be first_name, last_name, student_no and semester respectively.
 
-
+    //echo "hello";
     //START YEAR/SEM LOOKUP.
     $semest = 1;
     $year = 2015;
@@ -33,107 +33,113 @@
     } else {
         echo "Could not get current year/semester from database, defaulting to semester 1 2015.\r\n";
     }
+    $conn->close();
+
+    //echo $year;
+    //echo $semest;
     //END YEAR/SEM LOOKUP.
 
     if($_POST["table"]=="Marker" || $_POST["table"]=="marker") {
         //Working with Markers
         if($_POST["task"]=="Add" || $_POST["task"]=="add") {
-            echo "Adding to Markers.\r\n";
+            //echo "Adding to Markers.\r\n";
             //Add to Markers
-            echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." to the marker table.\r\n";
-            marker($_POST["fname"], $_POST["lname"], TRUE);
+            //echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." to the marker table.\r\n";
+            marker($_POST["fname"], $_POST["lname"], TRUE, $year, $servername, $username, $password, $dbname);
         } elseif($_POST["task"]=="Remove" || $_POST["task"]=="remove") {
-            echo "Removing from Markers.\r\n";
+            //echo "Removing from Markers.\r\n";
             //Remove from Markers
-            echo "removing ".$_POST["fname"]." ".$_POST["lname"]." to the marker table.\r\n";
-            marker($_POST["fname"], $_POST["lname"], FALSE);
+            //echo "removing ".$_POST["fname"]." ".$_POST["lname"]." to the marker table.\r\n";
+            marker($_POST["fname"], $_POST["lname"], FALSE, $year, $servername, $username, $password, $dbname);
         } else {
-            echo "Second argument incorrect, please specify Add for adding or Remove for removing.\r\n";
+            //echo "Second argument incorrect, please specify Add for adding or Remove for removing.\r\n";
             exit(1);
         }
     } elseif($_POST["table"]=="Student" || $_POST["table"]=="student") {
         //Working with Students
         if($_POST["task"]=="Add" || $_POST["task"]=="add"){
-            echo "Adding to Students.\r\n";
+            //echo "Adding to Students.\r\n";
             //Add to Students
             if($_POST["sem"]=="Proposal" || $_POST["sem"] == "proposal") {
-                echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." to the student_proposal table.\r\n";
-                addStudent("proposal", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
+                //echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." to the student_proposal table.\r\n";
+                addStudent("proposal", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest, $year, $servername, $username, $password, $dbname);
             } elseif($_POST["sem"]=="Final" || $_POST["sem"] == "final") {
-                echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." to the student_final table.\r\n";
-                addStudent("final", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
+                //echo "Adding ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." to the student_final table.\r\n";
+                addStudent("final", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest, $year, $servername, $username, $password, $dbname);
             } else {
-                echo "Third argument incorrect, please specify Proposal or Final.\r\n";
+                //echo "Third argument incorrect, please specify Proposal or Final.\r\n";
                 exit(1);
             }
         } elseif($_POST["task"]=="Remove" || $_POST["task"]=="remove") {
-            echo "Removing from Students.\r\n";
+            //echo "Removing from Students.\r\n";
             //Remove from Students
             if($_POST["sem"]=="Proposal" || $_POST["sem"] == "proposal") {
-                echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_proposal table.\r\n";
-                removeStudent("proposal", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
+                //echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_proposal table.\r\n";
+                removeStudent("proposal", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest, $year, $servername, $username, $password, $dbname);
             } elseif($_POST["sem"]=="Final" || $_POST["sem"] == "final") {
-                echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_final table.\r\n";
-                removeStudent("final", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest);
+                //echo "Removing ".$_POST["fname"]." ".$_POST["lname"]." ".$_POST["num"]." for semester ".$semest." from the student_final table.\r\n";
+                removeStudent("final", $_POST["fname"], $_POST["lname"], $_POST["num"], $semest, $year, $servername, $username, $password, $dbname);
             } else {
-                echo "Third argument incorrect, please specify Proposal or Final.\r\n";
+                //echo "Third argument incorrect, please specify Proposal or Final.\r\n";
                 exit(1);
             }
         } else {
-            echo "Second argument incorrect, please specify Add for adding or Remove for removing.\r\n";
+            //echo "Second argument incorrect, please specify Add for adding or Remove for removing.\r\n";
             exit(1);
         }
     } else {
-        echo "First argument incorrect, please specify Marker for Markers or Student for Students.\r\n";
+        //echo "First argument incorrect, please specify Marker for Markers or Student for Students.\r\n";
         exit(1);
     }
 
-    function addStudent($cohort, $fName, $lName, $sNum, $sem){
+    function addStudent($cohort, $fName, $lName, $sNum, $sem, $year, $servername, $username, $password, $dbname){
         $conn = new mysqli($servername, $username, $password, $dbname);
+        //echo "hello";
+        $title = $_POST["title"];
+        $sql = "INSERT INTO student_" .$cohort ." (student_no, first_Name, last_Name, year, semester, title) VALUES ('$sNum', '$fName', '$lName', '$year', '$sem', '$title')";
+        //echo $sql;
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
-        $title = $_POST["title"];
-        $sql = "INSERT INTO student_" .$cohort ." (student_no, first_Name, last_Name, year, semester, title) VALUES ('$sNum', '$fName', '$lName', '$year', '$sem', '$title')";
+        //echo "goodbye";
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully\r\n";
+            //echo "New record created successfully\r\n";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error ."\r\n";
         }
         $conn->close();
     }
-    function removeStudent($cohort, $fName, $lName, $sNum, $sem){
+    function removeStudent($cohort, $fName, $lName, $sNum, $sem, $year, $servername, $username, $password, $dbname){
+        //ADD CODE TO CHECK WHETHER A STUDENT IS BEING DELETED OR WAS NEVER EVEN THERE.
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
-        $sql = "DELETE FROM student_" .$cohort ." WHERE student_no=='$sNum' AND  first_name=='$fName' AND last_name=='$lName' AND year=='$year' AND semester=='$sem'";
+        $sql = "DELETE FROM student_" .$cohort ." WHERE student_no='$sNum' AND  first_name='$fName' AND last_name='$lName' AND year='$year' AND semester='$sem'";
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully\r\n";
+            //echo "New record created successfully\r\n";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error ."\r\n";
         }
         $conn->close();
     }
 
-    function marker($fName, $lName, $curr){
+    function marker($fName, $lName, $curr, $year, $servername, $username, $password, $dbname){
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
         $sql = "INSERT INTO marker (first_name, last_name, current) VALUES ('$fName', '$lName', $curr)";
+        $sql = "UPDATE marker SET current=FALSE WHERE first_name='$fName' AND last_name='$lName'";
+        echo $sql;
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully\r\n";
+            //echo "New record created successfully\r\n";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error ."\r\n";
         }
         $conn->close();
     }
-<<<<<<< HEAD
 ?>
-=======
-?>  
->>>>>>> e493e0d5f3c29bd1fd54184ae0193a49627ec962
