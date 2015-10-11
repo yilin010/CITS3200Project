@@ -148,6 +148,19 @@
                 }
             })
 		}
+	
+	function addFile(){
+			
+            $.ajax({
+                type:"POST",
+                url: "addFile.php",
+                cache: false,
+                success: function(html){
+                    alert(html)
+                }
+            })
+	}
+		
         function manualAdd(){
             alert("MANUAL INSERT");
         }
