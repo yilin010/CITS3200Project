@@ -98,7 +98,7 @@
             $.ajax({
                 type:"POST",
                 url: "ManualAddRemove.php",
-                data: {table:"marker",task:"add",fname:markerName[0],lname:markerName[1]},
+                data: {table:"marker",task:"remove",fname:markerName[0],lname:markerName[1]},
                 cache: false,
                 success: function(html){
                     //console.log(html);
