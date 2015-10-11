@@ -2,12 +2,13 @@
     //Need to fill in appropriate details here
     $servername = "localhost:3307";
     $username = "root";
-    $password = "sonic7";
-    $dbname = "test";
+    $password = "password";
+    $dbname = "databaseName";
 
     //START YEAR/SEM LOOKUP.
     $semest = 1;
     $year = 2015;
+    
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
         echo "Connection failed: " . $conn->connect_error . "\r\n";
@@ -32,16 +33,16 @@
     //Take inputs, mark_1, mark_1_name, mark_2, etc...
     //Should be $_POST["mark1"], $_POST["mark1name"], etc...
     //UPDATE FOR THE CURRENT SEMESTER.
-    $mark1 = $_POST["mark1"];
-    $mark2 = $_POST["mark2"];
-    $mark3 = $_POST["mark3"];
-    $mark4 = $_POST["mark4"];
-    $mark5 = $_POST["mark5"];
-    $mark6 = $_POST["mark6"];
-    $mark7 = $_POST["mark7"];
-    $mark8 = $_POST["mark8"];
-    $mark9 = $_POST["mark9"];
-    $mark10 = $_POST["mark10"];
+    $mark1 = $_POST["mark1"]/100;
+    $mark2 = $_POST["mark2"]/100;
+    $mark3 = $_POST["mark3"]/100;
+    $mark4 = $_POST["mark4"]/100;
+    $mark5 = $_POST["mark5"]/100;
+    $mark6 = $_POST["mark6"]/100;
+    $mark7 = $_POST["mark7"]/100;
+    $mark8 = $_POST["mark8"]/100;
+    $mark9 = $_POST["mark9"]/100;
+    $mark10 = $_POST["mark10"]/100;
 
     $mark1name = $_POST["mark1name"];
     $mark2name = $_POST["mark2name"];

@@ -142,6 +142,9 @@
             $avgs[$b]+=$table[$a][$b];
         }
     }
+    for($d=1;$d<$nmarks+2;$d++){
+        $avgs[$d]=round($avgs[$d]/($nrows-1), 2);
+    }
     $mins = array_slice($mins, 0, $nmarks+2);
     $maxs = array_slice($maxs, 0, $nmarks+2);
     $avgs = array_slice($avgs, 0, $nmarks+2);
