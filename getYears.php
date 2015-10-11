@@ -27,11 +27,13 @@
     }
     $conn->close();
     
-    //echo "Years: ";
-    //foreach($years as $s){
-    //    echo $s." ";
-    //}
+    $htmlout = "<option value=\"noYearSelected\" selected>Select Year</option>";
+    foreach($years as $s){
+        $htmlout .= "<option value=\"".$s."\">".$s."</option>";
+    }
+
+    echo $htmlout;
     //echo "\r\n";
 
-    echo json_encode($years);
+    //echo json_encode($years);
 ?>
