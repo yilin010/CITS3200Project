@@ -2,8 +2,8 @@
     //Need to fill in appropriate details here
     $servername = "localhost:3307";
     $username = "root";
-    $password = "sonic7";
-    $dbname = "marks";
+    $password = "password";
+    $dbname = "databaseName";
 
     //First argument passed should be Marker or Student, denoting whether we are working with Markers or Students.
     //Second argument passed should be Add or Remove, denoting whether we are adding or removing from the database.
