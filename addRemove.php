@@ -137,6 +137,17 @@
             document.getElementById('manualAdd').setAttribute("onsubmit","addMarker()");
             document.getElementById('manualRemove').setAttribute("onsubmit","removeMarker()");
         }
+		function rollover(){
+			
+            $.ajax({
+                type:"POST",
+                url: "NewRoll.php",
+                cache: false,
+                success: function(html){
+                    alert(html)
+                }
+            })
+		}
         function manualAdd(){
             alert("MANUAL INSERT");
         }
@@ -187,7 +198,7 @@
                     <p class="modalP">Rolling a cohort from a proposal seminar into a final seminar will prevent you from making changes to the proposal seminar</p>
                     <br>
                     <p class="modalP">Make sure you have saved all changes for the current proposal seminar</p>
-                    <input class="btn btn-confirm" type="button" onclick="" value="Continue with rollover">
+                    <input class="btn btn-confirm" type="button" onclick="rollover()" value="Continue with rollover">
                     <a href="#close" class="btn btn-cancel"><span class="fa fa-user"></span>Cancel</a>
                 </div>
             </div>
