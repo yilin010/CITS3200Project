@@ -14,7 +14,7 @@
 
 		
 		
-		
+		#Temporary weighting tables.
 		$sql = "CREATE TABLE `temp_weighting_proposal` (
   `year` int(11) NOT NULL,
   `semester` int(11) NOT NULL,
@@ -42,7 +42,7 @@
 		
 		
 		
-		
+		#Temporary weighting tables.
 		$sql = " create table temp_weighting_final ( 
 			`year` int(11) NOT NULL,
   `semester` int(11) NOT NULL,
@@ -67,7 +67,7 @@
   `mark_10` decimal(10,10) DEFAULT NULL,
   `mark_10_name` varchar(45) NOT NULL)";
 		$conn->query($sql);
-		
+		#Temporary student table.
 $sql ="create table temp(
 		student_no int not null,
 		first_name varchar(45) not null,
@@ -91,12 +91,20 @@ $sql ="create table temp(
 		$semesters = $conn->query($sql);
 		$row = $semesters->fetch_assoc();#converting from table tuple to number value
 		$semester = $row["semester"];
-		echo $year;
-		echo $semester;
+		
 		
 	
-	
+$sql = "insert into temp_weighting_final (year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name)
+(select year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name
+from  weighting_final where year = " .$year." and semester =".$semester. ")";
+$conn->query($sql);
 
+$sql = "insert into temp_weighting_proposal (year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name)
+(select year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7, mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name
+from  weighting_proposal where year = " .$year." and semester =".$semester. ")";
+$conn->query($sql);
+	
+		#getting old semester's students
 		$sql = "insert into temp (student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4)
 			(select student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4
 			from student_proposal where year = '" .$year."' and semester ='".$semester." ')";
@@ -112,17 +120,34 @@ $sql ="create table temp(
 			$semester++;
 		}#Iterates time
 		
-		
-		$sql = "update temp set year = '".$year ."' , semester = '" .$semester ."' where year is not null";
+		#updating year/semester
+		$sql = "update temp_weighting_final set year = '".$year ."' , semester = '" .$semester ."' where year is not null";
+		$conn-> query($sql);
+		$sql = "update temp_weighting_proposal set year = '".$year ."' , semester = '" .$semester ."' where year is not null";
+		$conn-> query($sql);
+	
+	$sql = "update temp set year = '".$year ."' , semester = '" .$semester ."' where year is not null";
 	$conn-> query($sql);
 	$sql = "update current_year_semester set year = '".$year ."' , semester = '" .$semester ."' where year is not null";
 	$conn-> query($sql);
+	
+$sql = "insert into weighting_final (year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name)
+(select year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name
+from  temp_weighting_final)";
+$conn->query($sql);
+
+$sql = "insert into weighting_proposal (year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name)
+(select year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name
+from  temp_weighting_proposal)";
+$conn->query($sql);
 		$sql = "insert into student_final(student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4)
 			(select student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4
 			from temp)";
 		$conn-> query($sql);#inserts iterated time values where year and semester are null
 		
 		
+		
+		#cleaning up.
 	$sql = "Drop Table if exists temp_weighting_final";
 	$conn-> query($sql);
 	
