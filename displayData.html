@@ -48,13 +48,63 @@ $(function(){
             }
             contentSwitcher();
         });
+    function studentData(){
+        
+    }
+        
+    function getYears(){
+        $.ajax({
+            type:"POST",
+            url:"getYears.php",
+            cache:false,
+            success:function(html){
+                console.log(html);
+                var table = html;
+                document.getElementById('yearList').innerHTML = table;
+                document.getElementById('yearList2').innerHTML = table;   
+
+            }
+        
+        });
+    }
+        
+    function searchStudent(){
+        $.ajax({
+            type:"POST",
+            url:"DisplayDataStudent.php",
+            data: {name: document.getElementById('studentSearch').value,
+                   cohort: document.getElementsByTagName('select')[0].value,
+                   year: document.getElementsByTagName('select')[1].value,
+                   semester: document.getElementsByTagName('select')[2].value},
+            cache:false,
+            success:function(html){
+                document.getElementById('tableout1').innerHTML = html;
+            }
+        
+        });
+    }
     
+    function searchMarker(){
+        $.ajax({
+            type:"POST",
+            url:"DisplayDataMarker.php",
+            data: {name: document.getElementById('markerSearch').value,
+                   cohort: document.getElementsByTagName('select')[3].value,
+                   year: document.getElementsByTagName('select')[4].value,
+                   semester: document.getElementsByTagName('select')[5].value},
+            cache:false,
+            success:function(html){
+                document.getElementById('tableoutput2').innerHTML = html;
+            }
+        
+        });
+    }
     
     </script>
     
 </head>
 
-<body>
+<body onload="getYears()">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -90,208 +140,57 @@ $(function(){
 
 <div id="page1" class="content">
             <h2> Students' Statistics </h2>
-            <div class="col-md-6">
+            <div class="col-md-12">
 
-<input type="text" id="markersSearch" placeholder="Enter Student's Name">
-
-                <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Any Seminar</option>
-                    <option value="proposalSeminar">Proposal Seminar</option>
-                    <option value="finalSeminar">Final Seminar</option>
-                </select>
+<input type="text" id="studentSearch" placeholder="Enter Student's Name" onkeyup="studentData()">
 
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Select Year</option>
-                    <option value="proposalSeminar">2015</option>
-                    <option value="finalSeminar">2016</option>
+                    <option value="anySeminar" selected>Select Cohort</option>
+                    <option value="proposal">Proposal Seminar</option>
+                    <option value="final">Final Seminar</option>
                 </select>
+
+                <select class="stylish-select" id="yearList"  form="studentSearch" >
+                </select>
+                
+                <select class="stylish-select" id="sem1"  form="studentSearch" >
+                    <option value="anySeminar" selected>Select Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                </select>
+                <input type="button" class="saveAss" style="margin-top: 0.1cm;" name="saveTable" value="Search" onClick="searchStudent()" >
             </div>
 <br/>
 <br/>
-            <table class = "table table-bordered" id="studentsData" style="margin-top: 30px">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;vertical-align: middle">Markers Name</th>
-                        <th style="text-align: center">Final Mark</th>
-                        <th style="text-align: center">Oral Marks</th>
-                        <th style="text-align: center">Slide Marks</th>
-                        <th style="text-align: center">Content Marks</th>
-                        <th style="text-align: center">Other Marks</th>
-                    </tr>
-                </thead>
-                                  <tr>
-        <td>Markers 1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-
-    </tr>
-                                      <tr>
-        <td>Markers 2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-
-    </tr>
-                    <tr>
-        <td>Final Average</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-
-    </tr>
-
-
-                        <tr>
-        <td>Maximum</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-
-    </tr>
-
-                            <tr>
-        <td>Minimum</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-
-    </tr>
-
-
-                            <tr>
-        <td>Std Dev</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-
-    </tr>
-            </table>
+           <div id="tableout1"></div> 
 </div>
 
 <div id="page2" class="content">
             <h2> Markers' Statistics </h2>
-            <div class="col-md-6">
+            <div class="col-md-12">
 
-<input type="text" id="markersSearch" placeholder="Enter Marker's Name">
-
-                <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Any Seminar</option>
-                    <option value="proposalSeminar">Proposal Seminar</option>
-                    <option value="finalSeminar">Final Seminar</option>
-                </select>
+<input type="text" id="markerSearch" placeholder="Enter Marker's Name">
 
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Select Year</option>
-                    <option value="proposalSeminar">2015</option>
-                    <option value="finalSeminar">2016</option>
+                    <option value="anySeminar" selected>Select Cohort</option>
+                    <option value="proposal">Proposal Seminar</option>
+                    <option value="final">Final Seminar</option>
                 </select>
+
+                <select class="stylish-select" id="yearList2"  form="studentSearch" >
+                </select>
+                
+                <select class="stylish-select" id="sem2"  form="studentSearch" >
+                    <option value="anySeminar" selected>Select Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                </select>
+                
+                <input type="button" class="saveAss" style="margin-top: 0.1cm;" name="saveTable" value="Search" onClick="searchMarker()" >
             </div>
 <br/>
 <br/>
-            <table class = "table table-bordered" id="markersData" style="margin-top: 30px">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;vertical-align: middle">Students Name</th>
-                        <th style="text-align: center;vertical-align: middle">Students Number</th>
-
-                        <th style="text-align: center">Final Mark</th>
-                        <th style="text-align: center">Oral Marks</th>
-                        <th style="text-align: center">Slide Marks</th>
-                        <th style="text-align: center">Content Marks</th>
-                        <th style="text-align: center">Other Marks</th>
-                    </tr>
-                </thead>
-                                  <tr>
-        <td>Student 1</td>
-                <td>12345678</td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-                                <td></td>
-
-
-    </tr>
-                                      <tr>
-        <td>Student 2</td>
-                <td>12345678</td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>                <td></td>
-
-
-    </tr>
-
-                    <tr>
-        <td colspan="2">Maximum</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-                <td></td>
-
-    </tr>
-
-                        <tr>
-        <td colspan="2">Minimum</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-                <td></td>
-
-    </tr>
-
-
-                                        <tr>
-        <td colspan="2">Range (Max-Min)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-                <td></td>
-
-    </tr>
-                                <tr>
-        <td colspan="2">Std Dev</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td></td>
-                <td></td>
-
-    </tr>
-            </table>
+        <div id='tableoutput2'></div>    
 </div>
 
 </body>

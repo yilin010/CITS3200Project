@@ -157,7 +157,7 @@ function updateRow(row, i, reset) {
 	        }
 
 	       }
-
+            var cohort = document.getElementsByTagName('select')[0].value;
 
 	       var mark1 = weightageArray[0];
 	       var mark2 = weightageArray[1];
@@ -186,10 +186,11 @@ function updateRow(row, i, reset) {
 									$.ajax({
 										type:"POST",
 										url: "modifyAlgorithm.php",
-										data: {mark1:weightageArray[0], mark2:weightageArray[1], mark3:weightageArray[2], mark4:weightageArray[3], mark5:weightageArray[4], mark6:weightageArray[5], mark7:weightageArray[6], mark8:weightageArray[7], mark9:weightageArray[8], mark10:weightageArray[9], mark1name:assessmentArray[0], mark2name:assessmentArray[1],  mark3name:assessmentArray[2],  mark4name:assessmentArray[3],  mark5name:assessmentArray[4],  mark6name:assessmentArray[5], mark7name:assessmentArray[6], mark8name:assessmentArray[7],mark9name:assessmentArray[8], mark10name:assessmentArray[9]},
+										data: {cohort:cohort, mark1:weightageArray[0], mark2:weightageArray[1], mark3:weightageArray[2], mark4:weightageArray[3], mark5:weightageArray[4], mark6:weightageArray[5], mark7:weightageArray[6], mark8:weightageArray[7], mark9:weightageArray[8], mark10:weightageArray[9], mark1name:assessmentArray[0], mark2name:assessmentArray[1],  mark3name:assessmentArray[2],  mark4name:assessmentArray[3],  mark5name:assessmentArray[4],  mark6name:assessmentArray[5], mark7name:assessmentArray[6], mark8name:assessmentArray[7],mark9name:assessmentArray[8], mark10name:assessmentArray[9]},
 										cache: false,
 										success: function(html){
 											alert('Successfully changed assessments weightage');
+                                            var tableout = document.write(html);
 										}
 									})
 
@@ -237,8 +238,8 @@ function updateRow(row, i, reset) {
 Select cohort to change assessment components
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
                     <option value="anySeminar" selected>Any Seminar</option>
-                    <option value="proposalSeminar">Proposal Seminar</option>
-                    <option value="finalSeminar">Final Seminar</option>
+                    <option value="proposal">Proposal Seminar</option>
+                    <option value="final">Final Seminar</option>
                 </select>
 
             </div>
@@ -288,6 +289,7 @@ Select cohort to change assessment components
                 <input type="button" class="saveAss" style="margin-top: 0.5cm;" name="saveTable" value="Save" onClick="save()" >
             </div>
         </div>
+            <div id="outputTable">tableout</div> 
     </div><!-- /.container -->
 
     </body>
