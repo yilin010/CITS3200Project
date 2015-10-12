@@ -69,6 +69,22 @@ $(function(){
     }
         
     function searchStudent(){
+        if(document.getElementById('studentSearch').value==""){
+            alert("Please enter a student name");
+            return;
+        }
+        if(document.getElementsByTagName('select')[0].value=="anySeminar"){
+            alert("Please select a cohort");
+            return;
+        }
+        if(document.getElementsByTagName('select')[1].value=="noYearSelecter"){
+            alert("Please select a year");
+            return;
+        }
+        if(document.getElementsByTagName('select')[2].value=="noSemester"){
+            alert("Please select a semester");
+            return;
+        }
         $.ajax({
             type:"POST",
             url:"DisplayDataStudent.php",
@@ -85,6 +101,22 @@ $(function(){
     }
     
     function searchMarker(){
+        if(document.getElementById('markerSearch').value==""){
+            alert("Please enter a marker name");
+            return;
+        }
+        if(document.getElementsByTagName('select')[3].value=="anySeminar"){
+            alert("Please select a cohort");
+            return;
+        }
+        if(document.getElementsByTagName('select')[4].value=="noYearSelecter"){
+            alert("Please select a year");
+            return;
+        }
+        if(document.getElementsByTagName('select')[5].value=="noSemester"){
+            alert("Please select a semester");
+            return;
+        }
         $.ajax({
             type:"POST",
             url:"DisplayDataMarker.php",
@@ -154,7 +186,7 @@ $(function(){
                 </select>
                 
                 <select class="stylish-select" id="sem1"  form="studentSearch" >
-                    <option value="anySeminar" selected>Select Semester</option>
+                    <option value="noSemester" selected>Select Semester</option>
                     <option value="1">Semester 1</option>
                     <option value="2">Semester 2</option>
                 </select>
@@ -181,7 +213,7 @@ $(function(){
                 </select>
                 
                 <select class="stylish-select" id="sem2"  form="studentSearch" >
-                    <option value="anySeminar" selected>Select Semester</option>
+                    <option value="noSemester" selected>Select Semester</option>
                     <option value="1">Semester 1</option>
                     <option value="2">Semester 2</option>
                 </select>
