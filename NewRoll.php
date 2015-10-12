@@ -1,74 +1,68 @@
-
-	
 <?php
-	
-		
-		$servername = "localhost";
+		$servername = "localhost:3307";
 		$username = "root";
-		$password = "DaPassword1";#example password
+		$password = "sonic7";
+        $dbname = "marks";
 
-		$conn = new mysqli($servername, $username, $password, "testDB");
+		$conn = new mysqli($servername, $username, $password, $dbname);
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
-		} 
-
-		
+		}
 		
 		#Temporary weighting tables.
 		$sql = "CREATE TABLE `temp_weighting_proposal` (
-  `year` int(11) NOT NULL,
-  `semester` int(11) NOT NULL,
-  `mark_1` decimal(10,10) NOT NULL,
-  `mark_1_name` varchar(45) NOT NULL,
-  `mark_2` decimal(10,10) DEFAULT NULL,
-  `mark_2_name` varchar(45) DEFAULT NULL,
-  `mark_3` decimal(10,10) DEFAULT NULL,
-  `mark_3_name` varchar(45) DEFAULT NULL,
-  `mark_4` decimal(10,10) DEFAULT NULL,
-  `mark_4_name` varchar(45) DEFAULT NULL,
-  `mark_5` decimal(10,10) DEFAULT NULL,
-  `mark_5_name` varchar(45) DEFAULT NULL,
-  `mark_6` decimal(10,10) DEFAULT NULL,
-  `mark_6_name` varchar(45) DEFAULT NULL,
-  `mark_7` decimal(10,10) DEFAULT NULL,
-  `mark_7_name` varchar(45) DEFAULT NULL,
-  `mark_8` decimal(10,10) DEFAULT NULL,
-  `mark_8_name` varchar(45) DEFAULT NULL,
-  `mark_9` decimal(10,10) DEFAULT NULL,
-  `mark_9_name` varchar(45) DEFAULT NULL,
-  `mark_10` decimal(10,10) DEFAULT NULL,
-  `mark_10_name` varchar(45) DEFAULT NULL)"; 
+  `year` int(4) NOT NULL,
+  `semester` int(1) NOT NULL,
+  `mark_1_name` varchar(45),
+  `mark_1` FLOAT,
+  `mark_2_name` varchar(45),
+  `mark_2` FLOAT,
+  `mark_3_name` varchar(45),
+  `mark_3` FLOAT,
+  `mark_4_name` varchar(45),
+  `mark_4` FLOAT,
+  `mark_5_name` varchar(45),
+  `mark_5` FLOAT,
+  `mark_6_name` varchar(45),
+  `mark_6` FLOAT,
+  `mark_7_name` varchar(45),
+  `mark_7` FLOAT,
+  `mark_8_name` varchar(45),
+  `mark_8` FLOAT,
+  `mark_9_name` varchar(45),
+  `mark_9` FLOAT,
+  `mark_10_name` varchar(45),
+  `mark_10` FLOAT)";
 		$conn->query($sql);
-		
-		
 		
 		#Temporary weighting tables.
 		$sql = " create table temp_weighting_final ( 
-			`year` int(11) NOT NULL,
-  `semester` int(11) NOT NULL,
-  `mark_1` decimal(10,10) NOT NULL,
-  `mark_1_name` varchar(45) NOT NULL,
-  `mark_2` decimal(10,10) DEFAULT NULL,
-  `mark_2_name` varchar(45) DEFAULT NULL,
-  `mark_3` decimal(10,10) DEFAULT NULL,
-  `mark_3_name` varchar(45) DEFAULT NULL,
-  `mark_4` decimal(10,10) DEFAULT NULL,
-  `mark_4_name` varchar(45) DEFAULT NULL,
-  `mark_5` decimal(10,10) DEFAULT NULL,
-  `mark_5_name` varchar(45) DEFAULT NULL,
-  `mark_6` decimal(10,10) DEFAULT NULL,
-  `mark_6_name` varchar(45) DEFAULT NULL,
-  `mark_7` decimal(10,10) DEFAULT NULL,
-  `mark_7_name` varchar(45) DEFAULT NULL,
-  `mark_8` decimal(10,10) DEFAULT NULL,
-  `mark_8_name` varchar(45) DEFAULT NULL,
-  `mark_9` decimal(10,10) DEFAULT NULL,
-  `mark_9_name` varchar(45) DEFAULT NULL,
-  `mark_10` decimal(10,10) DEFAULT NULL,
-  `mark_10_name` varchar(45) NOT NULL)";
+			`year` int(4) NOT NULL,
+  `semester` int(1) NOT NULL,
+  `mark_1_name` varchar(45),
+  `mark_1` FLOAT,
+  `mark_2_name` varchar(45),
+  `mark_2` FLOAT,
+  `mark_3_name` varchar(45),
+  `mark_3` FLOAT,
+  `mark_4_name` varchar(45),
+  `mark_4` FLOAT,
+  `mark_5_name` varchar(45),
+  `mark_5` FLOAT,
+  `mark_6_name` varchar(45),
+  `mark_6` FLOAT,
+  `mark_7_name` varchar(45),
+  `mark_7` FLOAT,
+  `mark_8_name` varchar(45),
+  `mark_8` FLOAT,
+  `mark_9_name` varchar(45),
+  `mark_9` FLOAT,
+  `mark_10_name` varchar(45),
+  `mark_10` FLOAT)";
 		$conn->query($sql);
+
 		#Temporary student table.
-$sql ="create table temp(
+        $sql ="create table temp(
 		student_no int not null,
 		first_name varchar(45) not null,
 		last_name varchar(45) not null,
