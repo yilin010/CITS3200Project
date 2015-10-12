@@ -2,8 +2,8 @@
     //Need to fill in appropriate details here
     $servername = "localhost:3307";
     $username = "root";
-    $password = "password";
-    $dbname = "databaseName";
+    $password = "sonic7";
+    $dbname = "marks";
 
     // Function to calculate square of value - mean
     function sd_square($x, $mean) { return pow($x - $mean,2); }

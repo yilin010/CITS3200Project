@@ -48,13 +48,41 @@ $(function(){
             }
             contentSwitcher();
         });
+        function getYears(){
+                $.ajax({
+                type:"POST",
+                url:"getYears.php",
+                cache:false,
+                success:function(html){
+                    console.log(html);
+                    var table = html;
+                    document.getElementById('yearList').innerHTML = table;
+                    //document.getElementById('yearList2').innerHTML = table;   
+                    }
+        
+                });
+            }
     
+            function cohort(){
+                $.ajax({
+                type:"POST",
+                url:"DescriptiveStatsStudent.php",
+                data:{cohort: document.getElementsByTagName('select')[0].value ,year: document.getElementsByTagName('select')[1].value, semester:document.getElementsByTagName('select')[2].value},
+                cache:false,
+                success:function(html){
+                    console.log(html);
+                    var table = html;
+                    document.getElementById('tableout1').innerHTML = table;
+                    }
+        
+                });
+            }
     
     </script>
     
 </head>
 
-<body>
+<body onload="getYears()">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -85,58 +113,31 @@ $(function(){
               <h1><span class="fa fa-lock"></span> Descriptive Statistics </h1>
 
               <a href="#page1" class="btn btn-default"><span class="fa fa-user"></span>Student Stats</a>
-              <a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Markers Stats</a>
+              <!--<a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Markers Stats</a>-->
 </div>
 
 <div id="page1" class="content">
             <h2> Students' Statistics </h2>
 
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Any Seminar</option>
-                    <option value="proposalSeminar">Proposal Seminar</option>
-                    <option value="finalSeminar">Final Seminar</option>
+                    <option value="anySeminar" selected>Select Cohort</option>
+                    <option value="proposal">Proposal Seminar</option>
+                    <option value="final">Final Seminar</option>
                 </select>
 
-                <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Select Year</option>
-                    <option value="proposalSeminar">2015</option>
-                    <option value="finalSeminar">2016</option>
+                <select class="stylish-select" id="yearList"  form="studentSearch">
                 </select>
+    
+                <select class="stylish-select" id="sem1"  form="studentSearch" >
+                    <option value="anySeminar" selected>Select Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                </select>
+                <input type="button" class="saveAss" style="margin-top: 0.1cm;" name="saveTable" value="Display" onClick="cohort()" >
               <a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Export to Excel</a>
 
 <br />
-            <table class = "table table-bordered" id="studentStats" style="margin-top: 30px">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;vertical-align: middle">Student No.</th>
-                        <th style="text-align: center">Student Name</th>
-                       <th style="text-align: center">No. of markers marked</th>
-
-                        <th style="text-align: center">Final Mark</th>
-                        <th style="text-align: center">Marks Range</th>
-
-                        <th style="text-align: center">Max</th>
-
-                        <th style="text-align: center">Min</th>
-
-                        <th style="text-align: center">Std Dev</th>
-                    </tr>
-                </thead>
-                <td ></td>
-                                <td ></td>
-
-                <td ></td>
-
-
-                <td ></td>
-
-                <td ></td>
-
-                <td ></td>
-                                <td ></td>
-
-
-            </table>
+            <div id="tableout1"></div>
 </div>
 
 <div id="page2" class="content">
