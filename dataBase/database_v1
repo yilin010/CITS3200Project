@@ -1,0 +1,145 @@
+IF db_id('marks_database') IS NULL
+	CREATE DATABASE marks_database;
+GO
+
+USE marks_database
+GO
+
+CREATE TABLE student_final (
+	student_no INT(8) NOT NULL,
+	first_name VARCHAR(45) NOT NULL,
+	last_name VARCHAR(45) NOT NULL,
+	year INT(4) NOT NULL,
+	semester INT(1) NOT NULL,
+	supervisor_1 VARCHAR(45),
+	supervisor_2 VARCHAR(45),
+	supervisor_3 VARCHAR(45),
+	supervisor_4 VARCHAR(45),
+	PRIMARY KEY (student_no)
+)
+;
+
+CREATE TABLE marker (
+	first_name VARCHAR(45) NOT NULL,
+	last_name VARCHAR(45) NOT NULL,
+	current BOOL NOT NULL,
+	PRIMARY KEY (first_name, last_name)
+)
+;
+
+CREATE TABLE current_year_semester (
+	year INT(4) NOT NULL,
+	semester INT(1) NOT NULL,
+	PRIMARY KEY(year, semester) 
+)
+;
+
+CREATE TABLE username_password (
+	username VARCHAR(45) NOT NULL,
+	password VARCHAR(45) NOT NULL,
+	PRIMARY KEY(username) 
+)
+;
+
+CREATE TABLE weighting_final (
+	year INT(4) NOT NULL,
+	semester INT(1) NOT NULL,
+	mark_1_name VARCHAR(45),
+	mark_1 FLOAT, 
+	mark_2_name VARCHAR(45),
+	mark_2 FLOAT, 
+	mark_3_name VARCHAR(45),
+	mark_3 FLOAT, 
+	mark_4_name VARCHAR(45),
+	mark_4 FLOAT, 
+	mark_5_name VARCHAR(45),
+	mark_5 FLOAT, 
+	mark_6_name VARCHAR(45),
+	mark_6 FLOAT, 
+	mark_7_name VARCHAR(45),
+	mark_7 FLOAT, 
+	mark_8_name VARCHAR(45),
+	mark_8 FLOAT, 
+	mark_9_name VARCHAR(45),
+	mark_9 FLOAT, 
+	mark_10_name VARCHAR(45),
+	mark_10 FLOAT,
+	PRIMARY KEY(year, semester)
+)
+;
+
+CREATE TABLE mark_final (
+	student_no INT(8) NOT NULL,
+	marker VARCHAR(45) NOT NULL,
+	mark_1 FLOAT, 
+	mark_2 FLOAT, 
+	mark_3 FLOAT, 
+	mark_4 FLOAT, 
+	mark_5 FLOAT, 
+	mark_6 FLOAT, 
+	mark_7 FLOAT, 
+	mark_8 FLOAT, 
+	mark_9 FLOAT, 
+	mark_10 FLOAT,
+	PRIMARY KEY (student_no, marker)
+)
+;
+
+CREATE TABLE student_proposal (
+	student_no INT(8) NOT NULL,
+	first_name VARCHAR(45) NOT NULL,
+	last_name VARCHAR(45) NOT NULL,
+	year INT(4) NOT NULL,
+	semester INT(1) NOT NULL,
+	supervisor_1 VARCHAR(45),
+	supervisor_2 VARCHAR(45),
+	supervisor_3 VARCHAR(45),
+	supervisor_4 VARCHAR(45),
+	PRIMARY KEY (student_no)
+)
+;
+
+
+CREATE TABLE weighting_proposal (
+	year INT(4) NOT NULL,
+	semester INT(1) NOT NULL,
+	mark_1_name VARCHAR(45),
+	mark_1 FLOAT, 
+	mark_2_name VARCHAR(45),
+	mark_2 FLOAT, 
+	mark_3_name VARCHAR(45),
+	mark_3 FLOAT, 
+	mark_4_name VARCHAR(45),
+	mark_4 FLOAT, 
+	mark_5_name VARCHAR(45),
+	mark_5 FLOAT, 
+	mark_6_name VARCHAR(45),
+	mark_6 FLOAT, 
+	mark_7_name VARCHAR(45),
+	mark_7 FLOAT, 
+	mark_8_name VARCHAR(45),
+	mark_8 FLOAT, 
+	mark_9_name VARCHAR(45),
+	mark_9 FLOAT, 
+	mark_10_name VARCHAR(45),
+	mark_10 FLOAT,
+	PRIMARY KEY (year, semester)
+)
+;
+
+CREATE TABLE mark_proposal (
+	student_no INT(8) NOT NULL,
+	marker VARCHAR(45) NOT NULL,
+	mark_1 FLOAT, 
+	mark_2 FLOAT, 
+	mark_3 FLOAT, 
+	mark_4 FLOAT, 
+	mark_5 FLOAT, 
+	mark_6 FLOAT, 
+	mark_7 FLOAT, 
+	mark_8 FLOAT, 
+	mark_9 FLOAT, 
+	mark_10 FLOAT,
+	PRIMARY KEY (student_no, marker)
+)
+;
