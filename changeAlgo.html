@@ -108,6 +108,7 @@ function updateRow(row, i, reset) {
 
   function save(){
   	var tableInfo = document.getElementById('weightTable').rows;
+    var cohort = document.getElementsByTagName('select')[0].value;
   	var assessmentArray = [];
   	var weightageArray =[];
   	var x = document.getElementsByClassName("txt");
@@ -119,7 +120,11 @@ function updateRow(row, i, reset) {
   		alert("Unable to save assessment. Total weightings not 100%");
   		return;
   	}
-
+    
+    if (cohort == "anySeminar") {
+        alert("Please select a cohort.");
+        return;
+    }
 
   	for(var j=0;j<10;j++){
 
@@ -157,7 +162,6 @@ function updateRow(row, i, reset) {
 	        }
 
 	       }
-            var cohort = document.getElementsByTagName('select')[0].value;
 
 	       var mark1 = weightageArray[0];
 	       var mark2 = weightageArray[1];
