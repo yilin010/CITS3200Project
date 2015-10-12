@@ -49,6 +49,18 @@
             var checkedSeminar = document.forms[1].elements["seminar"].value;
             var stitle = document.getElementById('stitle').value
             // var dataString = '&name='+studentName+'&num='+studentNumber+'&sem='+checkedSeminar;
+            if(studentName==""){
+                alert("Please enter student name");
+                return;
+            }
+            if(studentNumber==""){
+                alert("Please enter student number");
+                return;
+            }
+            if (checkedSeminar==""){
+                alert("Please select a cohort");
+                return;
+            }
             $.ajax({
                 type:"POST",
                 url: "ManualAddRemove.php",
@@ -65,6 +77,10 @@
         function addMarker(){
             var markerName = document.forms[1].elements["manualMarkerName"].value.split(" ");
             //var markerNumber = document.forms[1].elements["manualMarkerNumber"].value;
+            if(markerName==""){
+                alert("Please enter marker name");
+                return;
+            }
             $.ajax({
                 type:"POST",
                 url: "ManualAddRemove.php",
@@ -81,6 +97,18 @@
             var studentName = document.forms[2].elements["manualStudentName"].value.split(" ");
             var studentNumber = document.forms[2].elements["manualStudentNumber"].value;
             var checkedSeminar = document.forms[2].elements["seminar"].value;
+            if(studentName==""){
+                alert("Please enter student name");
+                return;
+            }
+            if(studentNumber==""){
+                alert("Please enter student number");
+                return;
+            }
+            if (checkedSeminar==""){
+                alert("Please select a cohort");
+                return;
+            }
             $.ajax({
                 type:"POST",
                 url: "ManualAddRemove.php",
@@ -95,6 +123,10 @@
         function removeMarker(){
             var markerName = document.forms[2].elements["manualMarkerName"].value.split(" ");
             //var markerNumber = document.forms[2].elements["manualMarkerNumber"].value;
+            if(markerName==""){
+                alert("Please enter marker name");
+                return;
+            }
             $.ajax({
                 type:"POST",
                 url: "ManualAddRemove.php",
