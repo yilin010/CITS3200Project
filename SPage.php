@@ -29,57 +29,60 @@
             else document.forms[1].elements["manualStudentNumber"].className = '';
         }
         function addStudent(){
-            var studentName = document.forms[1].elements["manualStudentName"].value.split(" ");
+            var studentName = document.forms[0].elements["manualStudentName"].value.split(" ");
             console.log(studentName);
-            var studentNumber = document.forms[1].elements["manualStudentNumber"].value;
-            var checkedSeminar = document.forms[1].elements["seminar"].value;
-            var stitle = document.getElementById('stitle').value
+            var studentNumber = document.forms[0].elements["manualStudentNumber"].value;
+            var checkedSeminar = document.forms[0].elements["seminar"].value;
+            
             // var dataString = '&name='+studentName+'&num='+studentNumber+'&sem='+checkedSeminar;
             if(studentName==""){
-                alert("Please enter student name");
+                alert("Please enter the supervisor's name");
                 return;
             }
             if(studentNumber==""){
-                alert("Please enter student number");
+                alert("Please enter a student number");
                 return;
             }
             if (checkedSeminar==""){
                 alert("Please select a cohort");
                 return;
             }
+			
             $.ajax({
                 type:"POST",
                 url: "superAdd.php",
-                data: {table:"student",task:"add",sem:checkedSeminar,fname:studentName[0],lname:studentName[studentName.length-1],num:studentNumber,title:stitle},
+				
+				data: {table:"student",task:"add",sem:checkedSeminar,fname:studentName[0],lname:studentName[studentName.length-1],num:studentNumber},
                 cache: false,
                 success: function(html){
-                    //alert(html)
+                    alert(html)
                     //console.log(html);
-                    alert('Successfully added '+studentName+' with student number: '+studentNumber+' to '+checkedSeminar+' cohort');
+                    //alert('Successfully added '+studentName+' with student number: '+studentNumber+' to '+checkedSeminar+' cohort');
                 }
             })
 
         }
         function removeStudent(){
-            var studentName = document.forms[2].elements["manualStudentName"].value.split(" ");
-            var studentNumber = document.forms[2].elements["manualStudentNumber"].value;
-            var checkedSeminar = document.forms[2].elements["seminar"].value;
+            var studentName = document.forms[1].elements["manualStudentName"].value.split(" ");
+            var studentNumber = document.forms[1].elements["manualStudentNumber"].value;
+            var checkedSeminar = document.forms[1].elements["seminar"].value;
             if(studentName==""){
-                alert("Please enter student name");
+                alert("Please enter the supervisor's name");
                 return;
             }
             if(studentNumber==""){
-                alert("Please enter student number");
+                alert("Please enter a student number");
                 return;
             }
             if (checkedSeminar==""){
                 alert("Please select a cohort");
                 return;
             }
+			
             $.ajax({
                 type:"POST",
                 url: "superAdd.php",
-                data: {table:"student",task:"remove",sem:checkedSeminar,fname:studentName[0],lname:studentName[1],num:studentNumber,title:"Mr"},
+                data: {table:"student",task:"remove",sem:checkedSeminar,fname:studentName[0],lname:studentName[1],num:studentNumber},
                 cache: false,
                 success: function(html){
                     alert(html)
@@ -96,8 +99,8 @@
             // excelInput.setAttribute("accept",".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain");
             // document.getElementById('insert').appendChild(excelInput);
             
-            document.getElementById('manualAdd').innerHTML="<h4 style=\"text-align:center;display:block\"><u>Add Supervisor</u></h4><form method=\"POST\" onsubmit=\"addStudent();return false;\" id=\"manualAdd\"> Name: <select class=\"stylish-select\" style=\"margin-right:5px\" id=\"stitle\"><option value=\"Mr\">Mr</option><option value=\"Ms\">Ms</option><option value=\"Miss\">Miss</option><option value=\"Mrs\">Mrs</option></select><input class=\"stylish-input\" type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\"><br><br> <label id=\"numberLabel\" for=\"manualStudentNumber\">Number:</label> <input type=\"text\" onkeyup=\"validateNum()\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input style=\"margin-right:5px\"type=\"radio\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\"></form>";
-            document.getElementById('manualRemove').innerHTML=" <h4 style=\"text-align:center\"><u>Remove Supervisor</u></h4><form method=\"POST\" onsubmit=\"removeStudent();return false;\" id=\"manualRemove\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Student Name\" ><br><br><label id=\"numberLabel\" for=\"manualStudentNumber\"> Number:</label> <input method=\"post\" type=\"text\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input type=\"radio\" style=\"margin-right:5px\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Remove\"></form>";
+            document.getElementById('manualAdd').innerHTML="<h4 style=\"text-align:center;display:block\"><u>Add Supervisor</u></h4><form method=\"POST\" onsubmit=\"addStudent();return false;\" id=\"manualAdd\"> Name: <input class=\"stylish-input\" type=\"text\" name=\"manualStudentName\" placeholder=\"Enter Supervisor Name\"><br><br> <label id=\"numberLabel\" for=\"manualStudentNumber\">Number:</label> <input type=\"text\" onkeyup=\"validateNum()\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input style=\"margin-right:5px\"type=\"radio\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\"></form>";
+            document.getElementById('manualRemove').innerHTML=" <h4 style=\"text-align:center\"><u>Remove Supervisor</u></h4><form method=\"POST\" onsubmit=\"removeStudent();return false;\" id=\"manualRemove\"> Name: <input type=\"text\" name=\"manualStudentName\" placeholder=\"Enter supervisor's Name\" ><br><br><label id=\"numberLabel\" for=\"manualStudentNumber\"> Number:</label> <input method=\"post\" type=\"text\" id=\"manualStudentNumber\" placeholder=\"Enter Student Number\"><br><br><label id=\"proposalId\" for=\"proposal\">Proposal Seminar</label><input type=\"radio\" style=\"margin-right:5px\" name=\"seminar\" id=\"proposal\" value=\"proposal\"><label for=\"final\">Final Seminar</label><input type=\"radio\" id=\"final\" name=\"seminar\" value=\"final\"><br><br><input style=\"float:center\" type=\"submit\" name=\"manualButton\" value=\"Manually Remove\"></form>";
         }
         function manualAdd(){
             alert("MANUAL INSERT");
@@ -134,7 +137,7 @@
     </nav>
     <div class="container starter-template">
         <div class="jumbotron text-center ">
-              <h1><span class="fa fa-lock"></span> Add Students or Markers </h1>
+              <h1><span class="fa fa-lock"></span> Add or Remove Supervisors </h1>
 
               <a onClick="spawnStudent();" class="btn btn-default"><span class="fa fa-user"></span>Add/Remove supervisor</a>
               
