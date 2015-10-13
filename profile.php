@@ -163,7 +163,7 @@ function updateRow(row, i, reset) {
       console.log(dataString);
       $.ajax({
             type: "POST",
-            url: "manualAdd.php",
+            url: "keySearch.php",
             data: dataString,
             cache: false,
             success: function(html)
