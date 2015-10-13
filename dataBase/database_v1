@@ -1,9 +1,9 @@
-IF db_id('marks_database') IS NULL
-	CREATE DATABASE marks_database;
-GO
+//IF db_id('marks_database') IS NULL
+//	CREATE DATABASE marks_database;
+//GO
 
-USE marks_database
-GO
+//USE marks_database
+//GO
 
 CREATE TABLE student_final (
 	student_no INT(8) NOT NULL,
