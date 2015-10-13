@@ -103,8 +103,17 @@
 		$NOM = $fName;
 		$NOM .=" ".$lName;
 		
+        $sql = "select student_no from student_" .$cohort ." where student_no = '".$sNum."'";
+		$there = $conn -> query($sql);
+		if ($there->num_rows == 0) {
+			echo "No such student exists in that cohort. Please enter a valid student number";
+			exit(1);
+		}
+		
+		
+		
         $sql = "update student_" .$cohort ." set supervisor_".$num." = '".$NOM."' where student_no = '".$sNum."'";
-		echo $sql;
+		
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
@@ -125,16 +134,23 @@
         
 		
 		$sql = "Select year, supervisor_1, supervisor_2, supervisor_3, supervisor_4 from student_".$cohort." where student_no ='".$sNum."' ORDER BY year DESC LIMIT 1";
-		echo $sql;
+		
 		$NOM = $fName;
 		$NOM .=" ".$lName;
-		echo $NOM;
+		
+		$sql = "select student_no from student_" .$cohort ." where student_no = '".$sNum."'";
+		$there = $conn -> query($sql);
+		if ($there->num_rows == 0) {
+			echo "No such student exists in that cohort. Please enter a valid student number";
+			exit(1);
+		}
+		
 		$supers = $conn->query($sql);
 		$row = $supers->fetch_assoc();
 		
 		if($row["supervisor_1"] == $NOM){
 			$num =1;
-			echo "Found Him!";
+			
 		}
 		else if($row["supervisor_2"] == $NOM){
 			$num =2;
