@@ -63,6 +63,7 @@
 
 		#Temporary student table.
         $sql ="create table temp(
+		title varchar(45) not null,
 		student_no int not null,
 		first_name varchar(45) not null,
 		last_name varchar(45) not null,
@@ -99,8 +100,8 @@ from  weighting_proposal where year = " .$year." and semester =".$semester. ")";
 $conn->query($sql);
 	
 		#getting old semester's students
-		$sql = "insert into temp (student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4)
-			(select student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4
+		$sql = "insert into temp (title, student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4)
+			(select title,  student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4
 			from student_proposal where year = '" .$year."' and semester ='".$semester." ')";
 	$conn-> query($sql);
 	
@@ -134,8 +135,8 @@ $sql = "insert into weighting_proposal (year, semester, mark_1, mark_1_name, mar
 (select year, semester, mark_1, mark_1_name, mark_2, mark_2_name, mark_3, mark_3_name, mark_4,mark_4_name, mark_5, mark_5_name, mark_6,mark_6_name, mark_7,mark_7_name, mark_8,mark_8_name, mark_9,mark_9_name, mark_10, mark_10_name
 from  temp_weighting_proposal)";
 $conn->query($sql);
-		$sql = "insert into student_final(student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4)
-			(select student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4
+		$sql = "insert into student_final(title, student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4)
+			(select title,  student_no, first_name, last_name, year, semester, supervisor_1, supervisor_2, supervisor_3 , supervisor_4
 			from temp)";
 		$conn-> query($sql);#inserts iterated time values where year and semester are null
 		
