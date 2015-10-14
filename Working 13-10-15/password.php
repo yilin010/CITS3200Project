@@ -28,7 +28,7 @@
         if( password_verify($_POST["password"],$row[1]) ){
             session_start();
             $_SESSION['auth'] = "1";
-            echo "Verified\r\n";
+            echo "verified";
         }
         else{
             session_start();
