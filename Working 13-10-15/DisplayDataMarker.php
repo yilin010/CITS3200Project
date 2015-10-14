@@ -179,7 +179,7 @@
     }
     //We now have a table that includes all of the headings and data to display on the page, simply output.
 
-    $htmltable = "<table class = \"table table-bordered\" id=\"markersData\" style=\"margin-top: 30px\">";
+    $htmltable = "<table class = \"table table-striped\" id=\"markersData\" style=\"margin-top: 30px\">";
 
     //echo "\r\nData for ".$name.":\r\n";
     foreach($table as $t){ 
