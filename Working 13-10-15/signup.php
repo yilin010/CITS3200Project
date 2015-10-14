@@ -14,7 +14,7 @@
 
     $conn->select_db($dbname);
 
-    $stmt = $conn->prepare("INSERT INTO login(username,password) VALUES(?,?)");
+    $stmt = $conn->prepare("INSERT INTO username_password(username,password) VALUES(?,?)");
     if (!$stmt->bind_param("ss", $username,$hash)) {
         echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
         echo "\r\n";
