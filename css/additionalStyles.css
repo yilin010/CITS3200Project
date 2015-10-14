@@ -176,3 +176,13 @@ tr:visited{
     background-color: #FFCCCC;
     border: 2px solid #EC7272;
 }
+
+.table-striped>tbody>tr:first-child>td, 
+.table-striped>tbody>tr:first-child>th, 
+.table-striped>tfoot>tr:first-child>td, 
+.table-striped>tfoot>tr:first-child>th, 
+.table-striped>thead>tr:first-child>td, 
+.table-striped>thead>tr:first-child>th{
+
+background-color: #C0C0C0;
+}
