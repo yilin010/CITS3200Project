@@ -114,13 +114,13 @@ function updateRow(row, i, reset) {
   	var x = document.getElementsByClassName("txt");
   	var y = document.getElementsByClassName("assessName");
   	var saveSum = parseFloat(document.getElementById('sum').innerText).toFixed(2);
-  	
+
   	if (saveSum !== parseFloat(100).toFixed(2)){
 
   		alert("Unable to save assessment. Total weightings not 100%");
   		return;
   	}
-    
+
     if (cohort == "anySeminar") {
         alert("Please select a cohort.");
         return;
@@ -193,8 +193,9 @@ function updateRow(row, i, reset) {
 										data: {cohort:cohort, mark1:weightageArray[0], mark2:weightageArray[1], mark3:weightageArray[2], mark4:weightageArray[3], mark5:weightageArray[4], mark6:weightageArray[5], mark7:weightageArray[6], mark8:weightageArray[7], mark9:weightageArray[8], mark10:weightageArray[9], mark1name:assessmentArray[0], mark2name:assessmentArray[1],  mark3name:assessmentArray[2],  mark4name:assessmentArray[3],  mark5name:assessmentArray[4],  mark6name:assessmentArray[5], mark7name:assessmentArray[6], mark8name:assessmentArray[7],mark9name:assessmentArray[8], mark10name:assessmentArray[9]},
 										cache: false,
 										success: function(html){
+                                            console.log(html);
 											alert('Successfully changed assessments weightage');
-                                            
+
 										}
 									})
 
@@ -294,4 +295,3 @@ Select cohort to change assessment components
 
     </body>
         </html>
-

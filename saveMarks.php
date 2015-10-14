@@ -18,18 +18,19 @@
         die("Connection failed: " . $conn->connect_error);
     }
     $conn->select_db("seminarmarking");
-    $arryVersion = array();
     $array = array_filter($tableData, 'myFilter');
     print_r($array);
-    $rows = count($array)/$strideLength;
+    $rows = $_POST["rows"];//count($array)/$strideLength;
+    echo "THIS IS ROWS";
+    echo $rows;echo "\n";
 
-    for ($j=0; $j < $rows; $j++) {
+    for ($j=1; $j < $rows; $j++) {
         $query .= "(";
         for ($i=0; $i < $strideLength ; $i++) {
             if($i == 0){
                 $query .= $sNumber.",\"".$array[1+$i+$j*$strideLength]."\",";
             }
-            else if ($i < $strideLength-2) {
+            else if ($i < $strideLength-3) {
                 $query .= $array[1+$i+$j*$strideLength].",";
             }
             else {
@@ -55,7 +56,14 @@
     $del = "DELETE FROM mark_proposal WHERE student_no=".$sNumber.";";
     // echo $del;
     $conn->query($del);
-    $sql = "INSERT INTO mark_proposal(student_no,marker,mark_1,mark_2,mark_3,overall) values ".$query.";";
+    // echo $query;
+    // echo $strideLength-2;
+    echo $strideLength;
+    for ($j=1; $j<$strideLength-2; $j++) {
+        if($j<($strideLength-3)) $cols .="mark_".$j.",";
+        else $cols .="mark_".$j;
+    }
+    $sql = "INSERT INTO mark_proposal(student_no,marker,".$cols.") values ".$query.";";
     echo $sql;
     $conn->query($sql);
 ?>

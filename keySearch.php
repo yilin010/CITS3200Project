@@ -1,5 +1,6 @@
 <?php
     $name = $_POST['name1'].'%';
+    // $cohort = $_POST['cohort'];
 
     $servername = "localhost";
     $username = "root";

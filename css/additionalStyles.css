@@ -15,6 +15,9 @@ td a {
 tr:hover{
     background: #E5E5E5;
 }
+tr:visited{
+    background: green;
+}
 .btnRollover {
   color: #151414;
   background: #fff;

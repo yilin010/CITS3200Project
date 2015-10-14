@@ -1,30 +1,30 @@
 <?php
     //Need to fill in appropriate details here
-    $servername = "localhost:3307";
+    $servername = "127.0.0.1";
     $username = "root";
-    $password = "password";
-    $dbname = "databaseName";
+    // $password = "password";
+    $dbname = "seminarmarking";
 
     //START YEAR/SEM LOOKUP.
     $semest = 1;
     $year = 2015;
-    
-    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    $conn = new mysqli($servername, $username);
+    $conn->select_db("seminarmarking");
     if ($conn->connect_error) {
         echo "Connection failed: " . $conn->connect_error . "\r\n";
         exit(1);
     }
-    
-    $sqlsem = "SELECT year, semester FROM current_year_semester";
-    $result = $conn->query ($sqlsem);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $year = $row["year"];
-            $semest = $row["semester"];
-        }
-    } else {
-        echo "Could not get current year/semester from database, defaulting to semester 1 2015.\r\n";
-    }
+    // $sqlsem = "SELECT year, semester FROM current_year_semester";
+    // $result = $conn->query ($sqlsem);
+    // if (mysqli_num_rows($result) > 0) {
+    //     while($row = mysqli_fetch_assoc($result)) {
+    //         $year = $row["year"];
+    //         $semest = $row["semester"];
+    //     }
+    // } else {
+    //     echo "Could not get current year/semester from database, defaulting to semester 1 2015.\r\n";
+    // }
     //END YEAR/SEM LOOKUP.
 
 
@@ -54,23 +54,24 @@
     $mark8name = $_POST["mark8name"];
     $mark9name = $_POST["mark9name"];
     $mark10name = $_POST["mark10name"];
-    
-    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    $conn = new mysqli($servername, $username);
+    $conn->select_db("seminarmarking");
         if ($conn->connect_error) {
             echo "Connection failed: " . $conn->connect_error . "\r\n";
             exit(1);
         }
-        $sql = "UPDATE weighting_" .$_POST["cohort"] ." SET 
-mark_1='$mark1', mark_1_name='$mark1name', 
-mark_2='$mark2', mark_2_name='$mark2name', 
-mark_3='$mark3', mark_3_name='$mark3name', 
-mark_4='$mark4', mark_4_name='$mark4name', 
-mark_5='$mark5', mark_5_name='$mark5name', 
-mark_6='$mark6', mark_6_name='$mark6name', 
-mark_7='$mark7', mark_7_name='$mark7name', 
-mark_8='$mark8', mark_8_name='$mark8name', 
-mark_9='$mark9', mark_9_name='$mark9name', 
-mark_10='$mark10', mark_10_name='$mark10name' 
+        $sql = "UPDATE weighting_" .$_POST["cohort"] ." SET
+mark_1='$mark1', mark_1_name='$mark1name',
+mark_2='$mark2', mark_2_name='$mark2name',
+mark_3='$mark3', mark_3_name='$mark3name',
+mark_4='$mark4', mark_4_name='$mark4name',
+mark_5='$mark5', mark_5_name='$mark5name',
+mark_6='$mark6', mark_6_name='$mark6name',
+mark_7='$mark7', mark_7_name='$mark7name',
+mark_8='$mark8', mark_8_name='$mark8name',
+mark_9='$mark9', mark_9_name='$mark9name',
+mark_10='$mark10', mark_10_name='$mark10name'
 WHERE year='$year' AND semester='$semest'";
         echo $sql;
         if ($conn->query($sql) === TRUE) {

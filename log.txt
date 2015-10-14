@@ -1,0 +1,687 @@
+*   commit 307e7b8 (HEAD, origin/master, master)
+|\  Merge: 0e6b98d 4430854
+| | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | Date:   5 hours ago
+| | 
+| |     merged files
+| |   
+| * commit 4430854
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   5 hours ago
+| | 
+| |     Update addRemove.php
+| |   
+* | commit 0e6b98d
+|/  Author: Ilyas Git <ilyasridhuan@gmail.com>
+|   Date:   5 hours ago
+|   
+|        readded correct search php script
+|    
+*   commit 93f4ad1
+|\  Merge: 2851095 9bf023c
+| | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | Date:   6 hours ago
+| | 
+| |     Merge branch 'master' of https://github.com/IlyasRidhuan/CITS3200Project
+| |     
+| *   commit 9bf023c
+| |\  Merge: 78f6727 e09caa3
+| | | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | | Date:   6 hours ago
+| | | 
+| | |     Merge branch 'master' of https://github.com/IlyasRidhuan/CITS3200Project
+| | |    
+| * | commit 78f6727
+| | | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | | Date:   6 hours ago
+| | | 
+| | |     Functional file import UNTESTED
+| | |    
+* | | commit 2851095
+| |/  Author: Ilyas Git <ilyasridhuan@gmail.com>
+|/|   Date:   6 hours ago
+| |   
+| |       got main addRemove making, as well as signup and login pages
+| |   
+* | commit e09caa3
+| | Author: BjornBjornson <mfitzay@gmail.com>
+| | Date:   25 hours ago
+| | 
+| |     including title
+| |     
+| |     title was missing from rollover. Included now. Should work now.
+| |   
+* | commit a11423f
+|/  Author: yilinlim <limyilin10@gmail.com>
+|   Date:   24 hours ago
+|   
+|       Fixed Export to Excel Bug
+|  
+* commit 8a9efd3
+| Author: yilin010 <limyilin10@gmail.com>
+| Date:   25 hours ago
+| 
+|     Update Stats.html
+|  
+* commit e548a78
+| Author: yilin010 <limyilin10@gmail.com>
+| Date:   25 hours ago
+| 
+|     edit export to excel function
+|  
+* commit 6b1e1bd
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   26 hours ago
+| 
+|     Updated data types to conform with database
+|  
+* commit 0b7985b
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   26 hours ago
+| 
+|     Force user to input information
+|  
+* commit e7b3859
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   26 hours ago
+| 
+|     Force user to enter info.
+|  
+* commit 2190ed3
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   26 hours ago
+| 
+|     Force user to enter name, cohort, year, semester.
+|  
+* commit e92e5de
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   27 hours ago
+| 
+|     Renamed remove button to be more descriptive
+|  
+* commit 3e4ea18
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   27 hours ago
+| 
+|     Force user to select a cohort.
+|  
+* commit 6c3a65d
+| Author: yilin010 <limyilin10@gmail.com>
+| Date:   30 hours ago
+| 
+|     export to excel
+|  
+* commit 86d5bf1
+| Author: Ilyas Ridhuan <ilyasridhuan@gmail.com>
+| Date:   30 hours ago
+| 
+|     Changed password field to be 255 chars
+|  
+* commit 25b0274
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   30 hours ago
+| 
+|     Functional Stats
+|  
+* commit fbab1fa
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   31 hours ago
+| 
+|     Full functional cohort stats.
+|  
+* commit 7ddd232
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   31 hours ago
+| 
+|     No longer ignoring desc stats.
+|  
+* commit e9d6741
+| Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| Date:   32 hours ago
+| 
+|     Create database_v1
+|  
+* commit f1b2bdf
+| Author: BjornBjornson <mfitzay@gmail.com>
+| Date:   2 days ago
+| 
+|     Rollover function
+|  
+* commit 947e8b2
+| Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     Update addRemove.php
+|  
+* commit bb66389
+| Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     Update ManualAddRemove.php
+|  
+* commit c6bcec6
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     Testing
+|  
+* commit e65b94e
+| Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| Date:   2 days ago
+| 
+|     Update addFile()
+|  
+* commit cf8c24a
+| Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| Date:   2 days ago
+| 
+|     Create addFile.php
+|  
+* commit 8e1eb72
+| Author: BjornBjornson <mfitzay@gmail.com>
+| Date:   2 days ago
+| 
+|     Rollover function
+|  
+* commit a705350
+| Author: BjornBjornson <mfitzay@gmail.com>
+| Date:   2 days ago
+| 
+|     Rollover function
+|  
+* commit 8f38e77
+| Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     Update changeAlgo.html
+|  
+* commit 3185379
+| Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     Update changeAlgo.html
+|     
+|     Changed select wording.
+|  
+* commit b0a85ac
+| Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     Update changeAlgo.html
+|     
+|     Removed random echo
+|  
+* commit 6fdcc4a
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     Changed getYears to output html select
+|  
+* commit 9c2af0d
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   2 days ago
+| 
+|     ChangeAlgo fixed to use php correctly
+|    
+*   commit 30676f5
+|\  Merge: 18cfe03 3c7797b
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   2 days ago
+| | 
+| |     Temp change
+| |   
+| * commit 3c7797b
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   2 days ago
+| | 
+| |     Update DisplayDataStudent.php
+| |     
+| |     Correctly averages
+| |   
+| * commit 9acd11c
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   2 days ago
+| | 
+| |     Update changeAlgo.html
+| |   
+| * commit c62dd5b
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   2 days ago
+| | 
+| |     Update changeAlgo.html
+| |     
+| |     Changed to correctly pass cohort, changed cohort selection values.
+| |   
+| * commit b7c4741
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   2 days ago
+| | 
+| |     Update modifyAlgorithm.php
+| |     
+| |     Marks get converted to decimals from percentages.
+| |     
+| *   commit 393f6de
+| |\  Merge: 1888bbe 46ed2fb
+| | | Author: yilin010 <limyilin10@gmail.com>
+| | | Date:   2 days ago
+| | | 
+| | |     Merge pull request #6 from yilin010/master
+| | |     
+| | |     change table id for output display
+| | |    
+| | * commit 46ed2fb
+| |/  Author: yilinlim <limyilin10@gmail.com>
+| |   Date:   2 days ago
+| |   
+| |       change table id for output display
+| |     
+| *   commit 1888bbe
+| |\  Merge: 3dd2d68 70db08a
+| | | Author: yilin010 <limyilin10@gmail.com>
+| | | Date:   3 days ago
+| | | 
+| | |     Merge pull request #5 from yilin010/master
+| | |     
+| | |     Download to excel & Dynamic generate year list for markers and students
+| | |    
+| | * commit 70db08a
+| | | Author: yilinlim <limyilin10@gmail.com>
+| | | Date:   3 days ago
+| | | 
+| | |     Export to Excel JS function
+| | |    
+| | * commit 57c1889
+| | | Author: yilinlim <limyilin10@gmail.com>
+| | | Date:   3 days ago
+| | | 
+| | |     Download to excel & Dynamic generate year list - Students
+| | |    
+| | * commit a415cfa
+| | | Author: yilinlim <limyilin10@gmail.com>
+| | | Date:   3 days ago
+| | | 
+| | |     Download to excel & Dynamic generate year list - Markers
+| | |    
+* | | commit 18cfe03
+|/ /  Author: James Hercock <jamolo.hercock@hotmail.com>
+| |   Date:   2 days ago
+| |   
+| |       Changed to output tables correctly, call php correctly
+| |   
+* | commit 3dd2d68
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   3 days ago
+| | 
+| |     Added averages to student data.
+| |   
+* | commit 62b6dd3
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   3 days ago
+| | 
+| |     Update changeAlgo.html
+| |     
+| |     Minor alert changes, modified to call correct php script.
+| |   
+* | commit baff7d4
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   3 days ago
+| | 
+| |     getYears.php returns JSON array of years such that we know what years to display in drop down selection.
+| |     
+* |   commit cfa6d5f
+|\ \  Merge: 4d56b68 b3973c7
+| |/  Author: yilin010 <limyilin10@gmail.com>
+| |   Date:   4 days ago
+| |   
+| |       Merge pull request #4 from yilin010/master
+| |       
+| |       add save function to Change Algo
+| |   
+| * commit b3973c7
+| | Author: yilinlim <limyilin10@gmail.com>
+| | Date:   4 days ago
+| | 
+| |     add save function to Change Algo
+| |   
+* | commit 4d56b68
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   4 days ago
+| | 
+| |     Fully functional DisplayDataMarker.php script
+| |   
+* | commit 80d7a56
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   4 days ago
+| | 
+| |     Fully functional StudentDisplayData php script
+| |   
+* | commit 88533d6
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   4 days ago
+| | 
+| |     Update ManualAddRemove.php
+| |     
+| |     SQL Insert syntactical fix
+| |   
+* | commit ebada31
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   5 days ago
+| | 
+| |     Update modifyAlgorithm.php
+| |     
+| |     Small change to SQL query syntax
+| |   
+* | commit 5b166a3
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   5 days ago
+| | 
+| |     Update ManualAddRemove.php
+| |     
+| |     Small change to SQL query syntax
+| |     
+* |   commit 11d63bf
+|\ \  Merge: 25bdee3 7213ddb
+| | | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | | Date:   5 days ago
+| | | 
+| | |     Merge branch 'master' of https://github.com/IlyasRidhuan/CITS3200Project
+| | |      
+| * |   commit 7213ddb
+| |\ \  Merge: 6c75e05 ec9670b
+| | |/  Author: yilin010 <limyilin10@gmail.com>
+| | |   Date:   5 days ago
+| | |   
+| | |       Merge pull request #3 from yilin010/master
+| | |       
+| | |       change front end - descriptive stats table header and display data for students
+| | |    
+| | * commit ec9670b
+| | | Author: yilinlim <limyilin10@gmail.com>
+| | | Date:   5 days ago
+| | | 
+| | |     change descriptive stats - update tables header
+| | |    
+| | * commit a2a4adf
+| | | Author: yilinlim <limyilin10@gmail.com>
+| | | Date:   5 days ago
+| | | 
+| | |     add display data for students - individual level
+| | |    
+* | | commit 25bdee3
+| | | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | | Date:   5 days ago
+| | | 
+| | |     renamed from html to php to accomodate header script
+| | |    
+* | | commit 6bd7431
+|/ /  Author: Ilyas Git <ilyasridhuan@gmail.com>
+| |   Date:   5 days ago
+| |   
+| |       login and logout functionality
+| |   
+* | commit 6c75e05
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   9 days ago
+| | 
+| |     Update ManualAddRemove.php
+| |     
+| |     Minor syntax correction
+| |   
+* | commit 9297915
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   9 days ago
+| | 
+| |     Added modifyAlgorithm.php, more syntax correction to ManualAddRemove.php
+| |   
+* | commit ec2908e
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   9 days ago
+| | 
+| |     Update ManualAddRemove.php
+| |     
+| |     Fixed SQL Syntax Error
+| |     
+* |   commit 6f6b8a6
+|\ \  Merge: 58a5ac2 d213dbc
+| |/  Author: yilin010 <limyilin10@gmail.com>
+| |   Date:   9 days ago
+| |   
+| |       Merge pull request #2 from yilin010/master
+| |       
+| |       Add descriptive stats page - no PHP function
+| |   
+| * commit d213dbc
+| | Author: yilinlim <limyilin10@gmail.com>
+| | Date:   9 days ago
+| | 
+| |     Add descriptive stats page - no PHP function
+| |     
+* |   commit 58a5ac2
+|\ \  Merge: 7560dca 8dae6c6
+| |/  Author: yilin010 <limyilin10@gmail.com>
+| |   Date:   10 days ago
+| |   
+| |       Merge pull request #1 from yilin010/master
+| |       
+| |       Add Change Algorithm Page (Add and remove assessment: check SUM to 100%)
+| |   
+| * commit 8dae6c6
+|/  Author: yilinlim <limyilin10@gmail.com>
+|   Date:   10 days ago
+|   
+|       Add Change Algorithm
+|    
+*   commit 7560dca
+|\  Merge: f49efe5 e493e0d
+| | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     merged conflicts?
+| |   
+| * commit e493e0d
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Update mark_proposal
+| |   
+| * commit 0ae4036
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Update mark_final
+| |   
+| * commit ebe16d8
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Update weighting_final
+| |   
+| * commit 2f1246b
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Update weighting_proposal
+| |   
+| * commit f25ee34
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Update ManualAddRemove.php
+| |     
+| |     Separated out Year/Sem Lookup
+| |   
+| * commit 96b9a63
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Update ManualAddRemove.php
+| |   
+| * commit efcf08b
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Added year and sem selection from database.
+| |   
+* | commit f49efe5
+|/  Author: Ilyas Git <ilyasridhuan@gmail.com>
+|   Date:   2 weeks ago
+|   
+|       fixed final table output
+|  
+* commit 1305108
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   2 weeks ago
+| 
+|     changed stuff for html
+|    
+*   commit 43ceb3c
+|\  Merge: 1545717 327d708
+| | Author: James Hercock <jamolo.hercock@hotmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Merge branch 'master' of https://github.com/IlyasRidhuan/CITS3200Project
+| |   
+| * commit 327d708
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Create weighting_proposal
+| |   
+| * commit 049c196
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Create weighting_final
+| |   
+| * commit eeb2c36
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Create student_proposal
+| |   
+| * commit c6af67a
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Create student_final
+| |   
+| * commit 71e1295
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Create mark_proposal
+| |   
+| * commit aba548b
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Create mark_final
+| |   
+| * commit cefb1af
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Create current_year_semester
+| |   
+| * commit 99b332b
+| | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     addded some functionality
+| |   
+| * commit ad4ea17
+| | Author: sabhytakumar <sabhyta.kumar@gmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Update and rename prototype_markers to marker
+| |   
+| * commit 706ce58
+| | Author: Jamolo5 <jamolo.hercock@hotmail.com>
+| | Date:   2 weeks ago
+| | 
+| |     Delete addStudent.php
+| |     
+| |     Duplicate file
+| |   
+* | commit 1545717
+|/  Author: James Hercock <jamolo.hercock@hotmail.com>
+|   Date:   2 weeks ago
+|   
+|       Modified manualaddremove functionality
+|  
+* commit 537965d
+| Author: James Hercock <jamolo.hercock@hotmail.com>
+| Date:   2 weeks ago
+| 
+|     ManualAddRemove PHP code functional
+|  
+* commit 278a82e
+| Author: Ilyas Git <ilyasridhuan@gmail.com>
+| Date:   3 weeks ago
+| 
+|     made changes and include modal window for database rollover
+|    
+*   commit 19f1ad2
+|\  Merge: 9c6dea3 414881b
+| | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | Date:   3 weeks ago
+| | 
+| |     Merge branch 'master' of https://github.com/IlyasRidhuan/CITS3200Project
+| |   
+| * commit 414881b
+| | Author: BjornBjornson <mfitzay@gmail.com>
+| | Date:   4 weeks ago
+| | 
+| |     Create prototype_weighting_propsem_1_2015
+| |   
+| * commit 36a22ea
+| | Author: BjornBjornson <mfitzay@gmail.com>
+| | Date:   4 weeks ago
+| | 
+| |     Create prototype_sinfo_propsem_1_2015
+| |   
+| * commit 965510e
+| | Author: BjornBjornson <mfitzay@gmail.com>
+| | Date:   4 weeks ago
+| | 
+| |     Create prototype_marks_propsem_1_2015
+| |   
+| * commit 1c6ccb2
+| | Author: BjornBjornson <mfitzay@gmail.com>
+| | Date:   4 weeks ago
+| | 
+| |     Create prototype_markers
+| |     
+| |     SQLDump from example case
+| |   
+* | commit 9c6dea3
+| | Author: Ilyas Git <ilyasridhuan@gmail.com>
+| | Date:   3 weeks ago
+| | 
+| |     changed gitignore
+| |   
+* | commit ab6b9d4
+|/  Author: Ilyas Git <ilyasridhuan@gmail.com>
+|   Date:   3 weeks ago
+|   
+|       added AJAX functionality, improved UX and Login Page
+|  
+* commit a8cc547
+| Author: Ilyas Git <ilyasridhuan@gmail.com>
+| Date:   5 weeks ago
+| 
+|     frontend stuff
+|  
+* commit 05b43ba
+| Author: Ilyas Git <ilyasridhuan@gmail.com>
+| Date:   5 weeks ago
+| 
+|     Revert "added some front end stuff"
+|     
+|     This reverts commit af7574c56e2887a7491aad2d942815c9aabc55a9.
+|  
+* commit af7574c
+  Author: Ilyas Git <ilyasridhuan@gmail.com>
+  Date:   5 weeks ago
+  
+      added some front end stuff

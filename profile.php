@@ -27,20 +27,36 @@
 function updateRow(row, i, reset) {
     // row.cells[0].innerHTML = i;
     //TODO gotta sort this out.
-    var inp1 = row.cells[1].getElementsByTagName('input')[0];
-    var inp2 = row.cells[2].getElementsByTagName('input')[0];
-    var inp3 = row.cells[3].getElementsByTagName('input')[0];
-    var inp4 = row.cells[4].getElementsByTagName('input')[0];
-    var inp5 = row.cells[5].getElementsByTagName('input')[0];
-    inp1.id = 'latbox' + i;
-    inp2.id = 'lngbox' + i;
-    inp3.id = 'lb' + i;
-    inp4.id = 'lg' + i;
-    inp5.id = 'lt' + i;
+    var count = document.getElementById('markerTable').getElementsByTagName('tr').length;
+    var headers = document.getElementById('markerTable').getElementsByTagName('th');
+    for (var i = 1; i < headers.length; i++) {
+        row.cells[i].getElementsByTagName('input')[0].value = "";
+        if(i>1){
+            console.log("i is "+i);
+            row.cells[i].getElementsByTagName('input')[0].id = headers[i].innerText+count;
+            row.cells[i].getElementsByTagName('input')[0].name = count;
+            row.cells[i].getElementsByTagName('input')[0].setAttribute("onchange","calc("+count+"); return false;");
 
-    if (reset) {
-        inp1.value = inp2.value = inp3.value = inp4.value = inp5.value= '';
+            // row.cells[i].getElementsByTagName('input')[0].onchange = "calc"+(count);
+        }
+        if(i==headers.length-1){
+            row.cells[i].getElementsByTagName('input')[0].name = "final"+(count);
+        }
     }
+    // var inp1 = row.cells[1].getElementsByTagName('input')[0];
+    // var inp2 = row.cells[2].getElementsByTagName('input')[0];
+    // var inp3 = row.cells[3].getElementsByTagName('input')[0];
+    // var inp4 = row.cells[4].getElementsByTagName('input')[0];
+    // var inp5 = row.cells[5].getElementsByTagName('input')[0];
+    // inp1.id = 'latbox' + i;
+    // inp2.id = 'lngbox' + i;
+    // inp3.id = 'lb' + i;
+    // inp4.id = 'lg' + i;
+    // inp5.id = 'lt' + i;
+
+    // if (reset) {
+    //     inp1.value = inp2.value = inp3.value = inp4.value = inp5.value= '';
+    // }
     return row;
 }
   function addMarker(){
@@ -55,52 +71,89 @@ function updateRow(row, i, reset) {
        var new_row = updateRow(clone.cloneNode(true), ++tbody.rows.length, true);
        tbody.appendChild(new_row)
   }
+  function calc(rowNum){
+      var marks = document.getElementsByName(rowNum);
+      var cohort = document.getElementsByTagName('select')[0].value;
+    //   if(cohort = "none") return false;
+
+      var data = [];
+      for (var i = 0; i < marks.length; i++) {
+          data[i] = marks[i].value;
+          console.log("data is "+data[i]);
+      }
+      $.ajax({
+          type:"POST",
+          url:"calculateTotal.php",
+          data:{data:data,cohort:cohort},
+          cache:false,
+          success: function(html){
+              if(html>0){
+                //   console.log(rowNum);
+                  console.log(html);
+              document.getElementsByName('final'+rowNum)[0].value = html;
+          }
+              console.log(html)
+          }
+      });
+  }
   function generateMarkers(sNumber){
       number = sNumber;
+      var checks =document.getElementsByName('subTable')[0].getElementsByTagName('tr').length;
+      for (var i = 0; i < checks-1; i++) {
+          if(document.getElementById(i).getElementsByTagName('td')[1].innerText == sNumber ){
+              document.getElementById(i).style.backgroundColor = "green";
+          }
+          else document.getElementById(i).style.backgroundColor = "";
+      }
+      var cohort = document.getElementsByTagName('select')[0].value;
+    //   if(cohort = "none") return false;
+
       console.log("CURRENT NUMBER IS "+number);
       $.ajax({
           type: "POST",
           url: "populateTable.php",
-          data: {num:sNumber},
+          data: {num:sNumber,cohort:cohort},
           cache: false,
           success: function(html){
+                document.getElementById('dispTable').innerHTML = html;
+
               console.log("html is "+html);
-              var data = html.split(",");
-            //    data = data.split("\n");
-              console.log(data);
-              var colNum = 1;
-              console.log(data[0])
-              for(var x = 1;x<13;x++){
-                  if(data[0] == data[x]){
-                      colNum = x;
-                      break;
-                  }
-              }
-            //   while(data[0] != data[colNum]){
-            //       console.log("columing");
-            //       colNum++;
+            //   var data = html.split(",");
+            // //    data = data.split("\n");
+            //   console.log(data);
+            //   var colNum = 1;
+            //   console.log(data[0])
+            //   for(var x = 1;x<13;x++){
+            //       if(data[0] == data[x]){
+            //           colNum = x;
+            //           break;
+            //       }
             //   }
-            console.log(colNum);
-            if(colNum ==1) colNum = data.length-1;
-            console.log("data len -1 is "+(data.length-1));
-            console.log("num of tags "+document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length);
-              while((data.length-1)/colNum > document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length){
-                  console.log("adding");
-                  addMarker();
-              }
-              while((data.length-1)/colNum < document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length){
-                  console.log("deleting");
-                  var len =document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length;
-                  document.getElementsByTagName('tbody')[1].getElementsByTagName('tr')[len-1].getElementsByTagName('td')[0].getElementsByTagName('input')[0].checked=true;
-                  removeMarker();
-              }
-
-              for(var i = 0;i<(data.length-1)/colNum;i++){
-
-                  for(var j = 1;j<colNum-1;j++){
-                      document.getElementsByTagName('tbody')[1].getElementsByTagName('tr')[i].getElementsByTagName('input')[j].value = data[i*(colNum)+j];
-                  }
-              }
+            // //   while(data[0] != data[colNum]){
+            // //       console.log("columing");
+            // //       colNum++;
+            // //   }
+            // console.log(colNum);
+            // if(colNum ==1) colNum = data.length-1;
+            // console.log("data len -1 is "+(data.length-1));
+            // console.log("num of tags "+document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length);
+            //   while((data.length-1)/colNum > document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length){
+            //       console.log("adding");
+            //       addMarker();
+            //   }
+            //   while((data.length-1)/colNum < document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length){
+            //       console.log("deleting");
+            //       var len =document.getElementsByTagName('tbody')[1].getElementsByTagName('tr').length;
+            //       document.getElementsByTagName('tbody')[1].getElementsByTagName('tr')[len-1].getElementsByTagName('td')[0].getElementsByTagName('input')[0].checked=true;
+            //       removeMarker();
+            //   }
+            //
+            //   for(var i = 0;i<(data.length-1)/colNum;i++){
+            //
+            //       for(var j = 1;j<colNum-1;j++){
+            //           document.getElementsByTagName('tbody')[1].getElementsByTagName('tr')[i].getElementsByTagName('input')[j].value = data[i*(colNum)+j];
+            //       }
+            //   }
           }
       });
 
@@ -108,13 +161,13 @@ function updateRow(row, i, reset) {
   function save(){
       console.log("NUMBER IS "+number);
       var tableRow = document.forms[1].getElementsByTagName('tr').length;
-      var tableColumn = document.forms[1].getElementsByTagName('td').length/(tableRow-1);
+      var tableColumn = document.forms[1].getElementsByTagName('th').length;
       var arr = [];
       for(var j = 1;j<tableRow;j++){
-           for(var i = 1;i< tableColumn;i++){
+           for(var i = 1;i< tableColumn-1;i++){
             //    console.log(document.forms[1].getElementsByTagName('tr')[j].getElementsByTagName('td')[i].getElementsByTagName('input')[0].value);
             //   console.log((j-1)*tableColumn+i);
-               arr[(j-1)*tableColumn+i] = document.forms[1].getElementsByTagName('tr')[j].getElementsByTagName('td')[i].getElementsByTagName('input')[0].value;
+               arr[j*tableColumn+i] = document.forms[1].getElementsByTagName('tr')[j].getElementsByTagName('td')[i].getElementsByTagName('input')[0].value;
            }
       }
       var arrJSON = JSON.stringify(arr);
@@ -125,10 +178,11 @@ function updateRow(row, i, reset) {
       $.ajax({
           type:"POST",
           url:"saveMarks.php",
-          data:{array:arr,stride:tableColumn,sNumber:number},
+          data:{array:arr,stride:tableColumn,rows:tableRow,sNumber:number},
           cache:false,
           success: function(html){
               console.log(html);
+
             //   if(html == 1)
             //     location.reload();
             //   alert("Congrats table saved");
@@ -154,6 +208,9 @@ function updateRow(row, i, reset) {
   }
   function keyPressSearch(){
       var studentName = document.getElementsByName('studentName')[0].value;
+      var cohort = document.getElementsByTagName('select')[0].value;
+    //   if(cohort = "none") return false;
+
       if(studentName.length<1) {
           console.log("EXITIING");
           document.getElementById("outputDiv").innerHTML = " ";
@@ -164,7 +221,7 @@ function updateRow(row, i, reset) {
       $.ajax({
             type: "POST",
             url: "keySearch.php",
-            data: dataString,
+            data: {name1:studentName,cohort:cohort},
             cache: false,
             success: function(html)
             {
@@ -172,7 +229,7 @@ function updateRow(row, i, reset) {
                     var data = html.split(',');
                     console.log(data);
                     var subTable = "<div class=\"col-md-10\">";
-                    subTable +="<table class = \"table table-bordered\"style=\"width:500px\">";
+                    subTable +="<table name=\"subTable\" class = \"table table-bordered\"style=\"width:500px\">";
                     subTable +="<thead><tr>";
                     subTable +="<th class=\"tableHead\">Student Number</th>";
                     subTable +="<th class=\"tableHead\" nowrap>Student Name</th>";
@@ -184,9 +241,9 @@ function updateRow(row, i, reset) {
                     var columns = 3;
                     var rows = (data.length-1)/columns;
                     for(var j=0;j<rows;j++){
-                        subTable +="<tr>";
+                        subTable +="<tr id=\""+j+"\">";
                         for(var i=0;i<columns;i++){
-                            subTable += "<td class\"classRow\" onclick=\"generateMarkers("+data[1+j*columns]+");\">"+data[i+j*columns]+"</td>";
+                            subTable += "<td class\"classRow\" onclick=\"generateMarkers("+data[1+j*columns]+");return false;\">"+data[i+j*columns]+"</td>";
                         }
                         subTable +="</tr>";
                     }
@@ -245,15 +302,15 @@ function updateRow(row, i, reset) {
              </div>
             <div class="col-md-6">
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Any Seminar</option>
-                    <option value="proposalSeminar">Proposal Seminar</option>
-                    <option value="finalSeminar">Final Seminar</option>
+                    <option value="none" selected>Choose A Seminar</option>
+                    <option value="proposal">Proposal Seminar</option>
+                    <option value="final">Final Seminar</option>
                 </select>
             </div>
         </div>
         <div id="outputDiv"></div>
-        <div class="col-md-10">
-            <form method="POST">
+        <div class="col-md-10" id="dispTable">
+            <!-- <form method="POST">
             <table class = "table table-bordered" id="markerTable" style="margin-top: 30px">
                 <thead>
                     <tr>
@@ -271,7 +328,7 @@ function updateRow(row, i, reset) {
                 <td style="width: 78px"><input type="text" style="border: 0px solid;text-align: center" name="content" placeholder="Content Mark"></td>
                 <td style="width: 78px"><input type="text" style="border: 0px solid;text-align: center" name="final" placeholder="Final Mark"></td>
             </table>
-            </form>
+            </form> -->
         </div>
         <div class="row">
             <div class="col-md-3" style="margin-left:15px;">
