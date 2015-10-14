@@ -158,14 +158,11 @@ $(function(){
 
     <div class="container starter-template">
         <div class="jumbotron text-center ">
-              <h1><span class="fa fa-lock"></span> Descriptive Statistics </h1>
+              <h1><span class="fa fa-lock"></span> Cohort Data </h1>
 
-              <a href="#page1" class="btn btn-default"><span class="fa fa-user"></span>Student Stats</a>
+              <a href="#page1" class="btn btn-default"><span class="fa fa-user"></span>Student Statistics</a>
               <!--<a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Markers Stats</a>-->
 </div>
-
-<div id="page1" class="content">
-            <h2> Students' Statistics </h2>
 
                 <select class="stylish-select" id="selectCohort"  form="studentSearch">
                     <option value="anySeminar" selected>Select Cohort</option>
@@ -182,7 +179,7 @@ $(function(){
                     <option value="2">Semester 2</option>
                 </select>
                 <input type="button" class="saveAss" style="margin-top: 0.1cm;" name="saveTable" value="Display" onClick="cohort()" >
-                                <input type="button" class="saveAss" style="margin-top: 0.1cm;" name="saveTable" value="Export to Excel" onClick="tablesToExcel(['cohortData'], ['Students Statistics'], 'student_stats.xls', 'Excel')" >
+                                <input type="button" class="saveAss" style="margin-top: 0.1cm;" name="saveTable" value="Export to Excel" onClick="tablesToExcel(['cohortData','averages'], ['Students Statistics','Cohort Averages'], 'student_stats.xls', 'Excel')" >
               <!--<a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Export to Excel</a>-->
 
 <br />
@@ -192,41 +189,5 @@ $(function(){
 <div id= "filterRecord"> Filter Records by Student Number: <input type="text" id="searchTerm" placeholder="Type to search" onkeyup="filterSearch()"></div>
 
             <div id="tableout1"></div>
-</div>
-
-<div id="page2" class="content">
-            <h2> Markers' Statistics </h2>
-
-                <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Any Seminar</option>
-                    <option value="proposalSeminar">Proposal Seminar</option>
-                    <option value="finalSeminar">Final Seminar</option>
-                </select>
-
-                <select class="stylish-select" id="selectCohort"  form="studentSearch">
-                    <option value="anySeminar" selected>Select Year</option>
-                    <option value="proposalSeminar">2015</option>
-                    <option value="finalSeminar">2016</option>
-                </select>
-                                          <a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Export to Excel</a>
-
-            <br />
-            <table class = "table table-bordered" id="markersStats" style="margin-top: 30px">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;vertical-align: middle">Marker Name</th>
-                        <th style="text-align: center">No. of students Marked</th>
-                        <th style="text-align: center">Average Mark</th>
-                                                <th style="text-align: center">Marks Range</th>
-
-                                                <th style="text-align: center">Max</th>
-
-                        <th style="text-align: center">Min</th>
-                        <th style="text-align: center">Std Dev</th>
-                    </tr>
-                </thead>
-            </table>
-</div>
-
 </body>
 </html>
