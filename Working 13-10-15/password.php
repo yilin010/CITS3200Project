@@ -1,5 +1,5 @@
 <?php
-    $username = $_POST["user"];
+
     $servername = "localhost:3307";
     $username = "root";
     $password = "sonic7";
