@@ -25,7 +25,7 @@
     
     if($result->num_rows > 0){
         $row = $result->fetch_array(MYSQLI_NUM);
-        if( password_verify($_POST["password"],$row[1]) ){
+        if( password_verify($_POST["pass"],$row[1]) ){
             session_start();
             $_SESSION['auth'] = "1";
             echo "verified";
