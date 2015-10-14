@@ -159,6 +159,10 @@ function updateRow(row, i, reset) {
 
   }
   function save(){
+      if(document.getElementById('selectCohort').value == "none"){
+		  alert("Please select a cohort.");
+		  return;
+	  }
       console.log("NUMBER IS "+number);
       var tableRow = document.forms[1].getElementsByTagName('tr').length;
       var tableColumn = document.forms[1].getElementsByTagName('th').length;
@@ -178,7 +182,7 @@ function updateRow(row, i, reset) {
       $.ajax({
           type:"POST",
           url:"saveMarks.php",
-          data:{array:arr,stride:tableColumn,rows:tableRow,sNumber:number},
+          data:{array:arr,stride:tableColumn,rows:tableRow,sNumber:number, cohort:document.getElementById('selectCohort').value},
           cache:false,
           success: function(html){
               console.log(html);
