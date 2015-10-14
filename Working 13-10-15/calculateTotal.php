@@ -1,7 +1,5 @@
 <?php
-    $name = $_POST['name1'].'%';
-
-    $servername = "localhost:3307";
+     $servername = "localhost:3307";
     $username = "root";
     $password = "sonic7";
     $dbname = "marks";
@@ -13,7 +11,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
     $conn->select_db($dbname);
-    
+
     //START YEAR/SEM LOOKUP.
     $semest = 1;
     $year = 2015;
@@ -30,27 +28,29 @@
     }
     //END YEAR/SEM LOOKUP
 
-    $stmt = $conn->prepare("SELECT * FROM student_".$_POST["cohort"]." WHERE first_name LIKE ? AND year=".$year." AND semester=".$semest.";");
-
-//
-//     // $stmt->bind_params("s",$name);
-        if (!$stmt->bind_param("s", $name)) {
-        echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-    }
-//     // $result = $stmt->execute();
-    if (!$stmt->execute()) {
-        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-    }
-    $result = $stmt->get_result();
-    if($result->num_rows > 0)
-    {
-
-        while ($row = $result->fetch_array(MYSQLI_NUM))
-        {
-            for($i=0;$i<3;$i++){
-                echo $row[$i].",";
+    $cohort = $_POST["cohort"];
+    $data = $_POST["data"];
+    // echo $data[0];
+    $val = 0;
+    // echo $data[0];
+    $sql = "select * from weighting_".$cohort." where year=".$year." && semester=".$semest.";";
+    $result = $conn->query($sql);
+    if(mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $elements = (count(array_filter($row))/2)-1;
+        $multipliers =[];
+        for ($i=1; $i <= $elements ; $i++) {
+            // echo $row['mark_'.$i.'_name'];
+            // echo $row['mark_2_name'];
+            if($row['mark_'.$i.'_name'] != 'null') {
+                $val = $val + $row['mark_'.$i]*$data[$i-1];
             }
+            else break;
         }
+
+    }else {
+        echo "No results found.\r\n";
     }
+    echo $val;
 
 ?>
