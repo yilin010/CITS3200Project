@@ -239,22 +239,22 @@
         echo $hg." ";
     }*/
     $subav[] = $newnewrow;
-    $htmltable = "<table class = \"table table-bordered\" id=\"cohortData\" style=\"margin-top: 30px\">";
+    $htmltable = "<table class = \"table table-bordered\" id=\"averages\" style=\"margin-top: 30px\">";
     //echo "\r\nData for ".$name.":\r\n";
-    foreach($cohorttable as $t){ 
+    foreach($subav as $t){ 
         $htmltable .= "<tr>";
 
         foreach($t as $d){
             //echo $d." ";
-            $htmltable .= "<th>".$d."</th>";
+            $htmltable .= "<th class = \"info\">".$d."</th>";
         }
         $htmltable .= "</tr>";
         //echo "\r\n";
     }
     $htmltable .= "</table>";
-    $htmltable .= "<div>";
-    $htmltable .= "<table class = \"table table-bordered\" id=\"averages\" style=\"margin-top: 30px\">";
-    foreach($subav as $t){ 
+
+    $htmltable .= "<table class = \"table table-striped\" id=\"cohortData\" style=\"margin-top: 30px\">";
+    foreach($cohorttable as $t){ 
         $htmltable .= "<tr>";
         foreach($t as $d){
             //echo $d." ";
@@ -264,6 +264,7 @@
         //echo "\r\n";
     }
     $htmltable .= "</table>";
+
     echo $htmltable;
     //echo $nrows."\r\n";
 ?>
