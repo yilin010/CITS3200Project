@@ -11,6 +11,7 @@
         echo "Dead\r\n";
     }
     $conn->select_db($dbname);
+    $username = $_POST["user"];
     $stmt = $conn->prepare("SELECT * FROM login WHERE username=?");
     if (!$stmt->bind_param("s", $username)) {
         echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
