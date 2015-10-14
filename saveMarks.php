@@ -26,7 +26,20 @@
 
     for ($j=1; $j < $rows; $j++) {
         $query .= "(";
-        for ($i=0; $i < $strideLength ; $i++) {
+        for ($i=0; $i < $strideLength ; $i++) {/* this is the code for refusing supervisors*/
+            $sql = "Select year, supervisor_1, supervisor_2, supervisor_3, supervisor_4 from student_".$_POST["cohort"]." where student_no ='".$sNumber."'";
+		
+			$supers = $conn->query($sql);
+			$row = $supers->fetch_assoc();
+			if($array[1+$j*$strideLength] == $row["supervisor_1"] ||
+			$array[1+$j*$strideLength] == $row["supervisor_2"]  ||
+			$array[1+$j*$strideLength] == $row["supervisor_3"] ||
+			$array[1+$j*$strideLength] == 	$row["supervisor_4"]){
+			    echo "Mark from ".$array[1+$j*$strideLength]." could not be added due to his supervisor status.";
+				$i = -1;
+				$j = $j +1;
+				continue;
+			}
             if($i == 0){
                 $query .= $sNumber.",\"".$array[1+$i+$j*$strideLength]."\",";
             }
