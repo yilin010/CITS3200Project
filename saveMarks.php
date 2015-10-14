@@ -53,7 +53,7 @@
             // echo $sql;
             // $conn->query($sql);
     }
-    $del = "DELETE FROM mark_proposal WHERE student_no=".$sNumber.";";
+    $del = "DELETE FROM mark_".$_POST["cohort"]." WHERE student_no=".$sNumber.";";
     // echo $del;
     $conn->query($del);
     // echo $query;
@@ -63,7 +63,7 @@
         if($j<($strideLength-3)) $cols .="mark_".$j.",";
         else $cols .="mark_".$j;
     }
-    $sql = "INSERT INTO mark_proposal(student_no,marker,".$cols.") values ".$query.";";
+    $sql = "INSERT INTO mark_".$_POST["cohort"]."(student_no,marker,".$cols.") values ".$query.";";
     echo $sql;
     $conn->query($sql);
 ?>
