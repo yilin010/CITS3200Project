@@ -12,7 +12,7 @@
     }
     $conn->select_db($dbname);
     $username = $_POST["user"];
-    $stmt = $conn->prepare("SELECT * FROM login WHERE username=?");
+    $stmt = $conn->prepare("SELECT * FROM username_password WHERE username=?");
     if (!$stmt->bind_param("s", $username)) {
         echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
         echo "\r\n";
