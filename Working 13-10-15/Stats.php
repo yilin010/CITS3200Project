@@ -23,6 +23,34 @@
             <script src="export.js" type="text/javascript"></script>
 
     <script type="text/javascript" charset="utf-8">
+    
+    
+    function filterSearch() {
+    var txtSearch = document.getElementById('searchTerm').value;
+    var tableContent = document.getElementById('cohortData');
+    var tableColumn;
+            
+    //Loop through table rows
+    for (var ind_Row = 0; ind_Row < tableContent.rows.length; ind_Row++) {
+        var dataRow = '';
+
+        if (ind_Row == 0) {
+           tableColumn = tableContent.rows.item(ind_Row).cells.length;
+           continue; 
+        }
+                
+        for (var ind_Col = 0; ind_Col < tableColumn; ind_Col++) {
+            dataRow += tableContent.rows.item(ind_Row).cells.item(ind_Col).textContent;
+        }
+
+        if (dataRow.indexOf(txtSearch) == -1)
+            tableContent.rows.item(ind_Row).style.display = 'none';
+        else
+            tableContent.rows.item(ind_Row).style.display = 'table-row';
+    }
+}
+
+
 $(function(){
 
             function contentSwitcher(settings){
@@ -158,6 +186,11 @@ $(function(){
               <!--<a href="#page2" class="btn btn-default"><span class="fa fa-user"></span>Export to Excel</a>-->
 
 <br />
+
+<br />
+
+<div id= "filterRecord"> Filter Records by Student Number: <input type="text" id="searchTerm" placeholder="Type to search" onkeyup="filterSearch()"></div>
+
             <div id="tableout1"></div>
 </div>
 
