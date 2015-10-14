@@ -4,7 +4,7 @@
     $password = "sonic7";
     $dbname = "marks";
     
-    $username = $_POST["user"];
+    
     //echo $username;
     $hash = password_hash($_POST["password"],PASSWORD_BCRYPT);
     $conn = new mysqli($servername, $username, $password);
@@ -13,7 +13,7 @@
     }
 
     $conn->select_db($dbname);
-
+    $username = $_POST["user"];
     $stmt = $conn->prepare("INSERT INTO username_password(username,password) VALUES(?,?)");
     if (!$stmt->bind_param("ss", $username,$hash)) {
         echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
