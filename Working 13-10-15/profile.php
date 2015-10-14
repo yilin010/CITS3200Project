@@ -279,7 +279,7 @@ function updateRow(row, i, reset) {
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="profile.html">Home</a></li>
+            <li class="active"><a href="profile.php">Home</a></li>
             <li><a href="profile.php">Enter Marks</a></li>
             <li><a href="changeAlgo.php">Change Algorithm</a></li>
             <li><a href="addRemove.php">Add/Remove</a></li>
